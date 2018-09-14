@@ -75,7 +75,7 @@ public class MyBatisPlusGenerator {
     private static String DB_PASSWORD = "root";
     private static String DB_DRIVER = "com.mysql.jdbc.Driver";
 
-    public static void main(String[] args) {
+    public static void testMain(String[] args) {
         // 自定义需要填充的字段
         List<TableFill> tableFillList = new ArrayList<>();
         tableFillList.add(new TableFill("ASDD_SS", FieldFill.INSERT_UPDATE));
