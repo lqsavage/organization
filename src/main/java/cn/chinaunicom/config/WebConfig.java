@@ -15,6 +15,14 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 import cn.chinaunicom.interceptor.ServerConfigInterceptor;
 
+/**
+ * **************************************
+ * 描述: web设置
+ * @ClassName: cn.chinaunicom.config.WebConfig 
+ * @author zhw 
+ * @version V1.0
+***************************************
+ */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 

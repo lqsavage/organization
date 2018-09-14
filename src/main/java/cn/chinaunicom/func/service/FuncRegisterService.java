@@ -16,7 +16,18 @@ import cn.chinaunicom.func.entity.FuncRegister;
  */
 public interface FuncRegisterService extends IService<FuncRegister> {
 
+	/**
+	 * 
+	*描述:获取节点注册列表 
+	*@return List<FuncRegister>
+	 */
 	public List<FuncRegister> getFuncList();
 	
+	/**
+	 * 
+	*描述: 保存节点注册信息 
+	*@param entity
+	*@return Integer
+	 */
 	public Integer saveFunc(FuncRegister entity);
 }

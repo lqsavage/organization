@@ -16,8 +16,19 @@ import java.util.List;
  */
 public interface MenuitemRegService extends IService<MenuitemReg> {
 
+	/**
+	 * 
+	*描述: 获取菜单注册列表 
+	*@return List<MenuitemReg>
+	 */
 	public List<MenuitemReg> getMenuitemRegList();
 	
+	/**
+	 * 
+	*描述: 保存菜单注册信息 
+	*@param entity
+	*@return Integer
+	 */
 	public Integer saveMenuitemReg(MenuitemReg entity);
 	
 }

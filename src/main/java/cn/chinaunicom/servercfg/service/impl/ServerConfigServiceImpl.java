@@ -11,6 +11,14 @@ import cn.chinaunicom.servercfg.dao.ServerConfigMapper;
 import cn.chinaunicom.servercfg.entity.ServerConfig;
 import cn.chinaunicom.servercfg.service.ServerConfigService;
 
+/**
+ * **************************************
+ * 描述: 服务管理service实现类 
+ * @ClassName: cn.chinaunicom.servercfg.service.impl.ServerConfigServiceImpl 
+ * @author zhw 
+ * @version V1.0
+***************************************
+ */
 @Service
 public class ServerConfigServiceImpl extends ServiceImpl<ServerConfigMapper, ServerConfig> implements ServerConfigService {
 

@@ -9,6 +9,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 
+/**
+ * **************************************
+ * 描述: Mybatis设置
+ * @ClassName: cn.chinaunicom.config.MybatisPlusConfig 
+ * @author zhw 
+ * @version V1.0
+***************************************
+ */
 @EnableTransactionManagement
 @Configuration
 @MapperScan("cn.chinaunicom.**.dao")

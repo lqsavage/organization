@@ -5,6 +5,14 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+/**
+ * **************************************
+ * 描述: Swagger参数实体类
+ * @ClassName: cn.chinaunicom.config.SwaggerConfigProperties 
+ * @author zhw 
+ * @version V1.0
+***************************************
+ */
 @ConfigurationProperties(prefix = "sop.swagger")
 @Component
 public class SwaggerConfigProperties implements Serializable  {
