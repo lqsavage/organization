@@ -3,6 +3,8 @@ package cn.chinaunicom.func.entity;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
@@ -10,9 +12,10 @@ import java.io.Serializable;
  * </p>
  *
  * @author zhw
- * @since 2018-09-12
+ * @since 2018-09-17
  */
 @TableName("hr_func_register")
+@ApiModel("节点注册")
 public class FuncRegister extends Model<FuncRegister> {
 
     private static final long serialVersionUID = 1L;
@@ -21,22 +24,27 @@ public class FuncRegister extends Model<FuncRegister> {
     /**
      * 节点路径
      */
+     @ApiModelProperty(value="节点路径")
     private String url;
     /**
      * 节点名称
      */
+     @ApiModelProperty(value="节点名称")
     private String name;
     /**
      * 节点编码
      */
+     @ApiModelProperty(value="节点编码")
     private String code;
     /**
      * 描述
      */
+     @ApiModelProperty(value="描述")
     private String description;
     /**
      * 所属模块
      */
+     @ApiModelProperty(value="所属模块")
     private String module;
 
 
@@ -95,7 +103,7 @@ public class FuncRegister extends Model<FuncRegister> {
 
     @Override
     public String toString() {
-        return "Funcregister{" +
+        return "FuncRegister{" +
         ", id=" + id +
         ", url=" + url +
         ", name=" + name +

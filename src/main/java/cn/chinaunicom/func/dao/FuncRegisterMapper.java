@@ -1,7 +1,7 @@
 package cn.chinaunicom.func.dao;
 
-import cn.chinaunicom.dao.HrBaseMapper;
 import cn.chinaunicom.func.entity.FuncRegister;
+import cn.chinaunicom.dao.HrBaseMapper;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import cn.chinaunicom.func.entity.FuncRegister;
  * </p>
  *
  * @author zhw
- * @since 2018-09-12
+ * @since 2018-09-17
  */
 public interface FuncRegisterMapper extends HrBaseMapper<FuncRegister> {
 

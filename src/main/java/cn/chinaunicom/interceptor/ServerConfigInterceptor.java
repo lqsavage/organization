@@ -18,7 +18,7 @@ import cn.chinaunicom.utils.Constant;
 /**
  * **************************************
  * 描述: 服务注册拦截器
- * 开发的服务前缀为Constant.SERVER_PREFIX，必须在hr_serverconfig中注册才允许访问
+ * 开发的服务前缀为Constant.SERVER_PREFIX，必须在hr_server_config中注册才允许访问
  * @ClassName: cn.chinaunicom.interceptor.ServerConfigInterceptor 
  * @author zhw 
  * @version V1.0

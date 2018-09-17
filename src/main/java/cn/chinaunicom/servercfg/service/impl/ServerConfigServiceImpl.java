@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-
 import cn.chinaunicom.servercfg.dao.ServerConfigMapper;
 import cn.chinaunicom.servercfg.entity.ServerConfig;
 import cn.chinaunicom.servercfg.service.ServerConfigService;
+import cn.chinaunicom.service.impl.HrServiceImpl;
 
 /**
  * **************************************
@@ -20,7 +19,7 @@ import cn.chinaunicom.servercfg.service.ServerConfigService;
 ***************************************
  */
 @Service
-public class ServerConfigServiceImpl extends ServiceImpl<ServerConfigMapper, ServerConfig> implements ServerConfigService {
+public class ServerConfigServiceImpl extends HrServiceImpl<ServerConfigMapper, ServerConfig> implements ServerConfigService {
 
 	@Autowired
 	ServerConfigMapper mapper;

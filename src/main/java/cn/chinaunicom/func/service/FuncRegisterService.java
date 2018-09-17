@@ -1,10 +1,8 @@
 package cn.chinaunicom.func.service;
 
-import java.util.List;
-
-import com.baomidou.mybatisplus.service.IService;
-
 import cn.chinaunicom.func.entity.FuncRegister;
+import cn.chinaunicom.service.IHrService;
+import java.util.List;
 
 /**
  * <p>
@@ -12,22 +10,12 @@ import cn.chinaunicom.func.entity.FuncRegister;
  * </p>
  *
  * @author zhw
- * @since 2018-09-12
+ * @since 2018-09-17
  */
-public interface FuncRegisterService extends IService<FuncRegister> {
+public interface FuncRegisterService extends IHrService<FuncRegister> {
 
-	/**
-	 * 
-	*描述:获取节点注册列表 
-	*@return List<FuncRegister>
-	 */
-	public List<FuncRegister> getFuncList();
+	public List<FuncRegister> getFuncRegisterList();
 	
-	/**
-	 * 
-	*描述: 保存节点注册信息 
-	*@param entity
-	*@return Integer
-	 */
-	public Integer saveFunc(FuncRegister entity);
+	public Integer saveFuncRegister(FuncRegister entity);
+	
 }

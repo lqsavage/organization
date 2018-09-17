@@ -3,6 +3,8 @@ package cn.chinaunicom.menu.entity;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
@@ -13,6 +15,7 @@ import java.io.Serializable;
  * @since 2018-09-17
  */
 @TableName("hr_menuitem_reg")
+@ApiModel("菜单注册")
 public class MenuitemReg extends Model<MenuitemReg> {
 
     private static final long serialVersionUID = 1L;
@@ -21,22 +24,27 @@ public class MenuitemReg extends Model<MenuitemReg> {
     /**
      * 节点编码
      */
+     @ApiModelProperty(value="节点编码")
     private String funcode;
     /**
      * 菜单名称
      */
+     @ApiModelProperty(value="菜单名称")
     private String name;
     /**
      * 菜单编码
      */
+     @ApiModelProperty(value="菜单编码")
     private String code;
     /**
      * 描述
      */
+     @ApiModelProperty(value="描述")
     private String description;
     /**
      * 所属模块
      */
+     @ApiModelProperty(value="所属模块")
     private String module;
 
 

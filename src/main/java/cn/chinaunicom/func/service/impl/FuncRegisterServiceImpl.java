@@ -1,16 +1,13 @@
 package cn.chinaunicom.func.service.impl;
 
-import cn.chinaunicom.func.dao.FuncRegisterMapper;
 import cn.chinaunicom.func.entity.FuncRegister;
+import cn.chinaunicom.func.dao.FuncRegisterMapper;
 import cn.chinaunicom.func.service.FuncRegisterService;
-
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-
+import cn.chinaunicom.service.impl.HrServiceImpl;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 
 /**
  * <p>
@@ -18,22 +15,21 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author zhw
- * @since 2018-09-12
+ * @since 2018-09-17
  */
 @Service
-public class FuncRegisterServiceImpl extends ServiceImpl<FuncRegisterMapper, FuncRegister> implements FuncRegisterService {
+public class FuncRegisterServiceImpl extends HrServiceImpl<FuncRegisterMapper, FuncRegister> implements FuncRegisterService {
 
 	@Autowired
 	FuncRegisterMapper mapper;
 	
 	@Override
-	public List<FuncRegister> getFuncList() {
+	public List<FuncRegister> getFuncRegisterList() {
 		return mapper.selectList(new EntityWrapper<FuncRegister>().eq("1", "1"));
 	}
 
 	@Override
-	public Integer saveFunc(FuncRegister entity) {
+	public Integer saveFuncRegister(FuncRegister entity) {
 		return mapper.insert(entity);
 	}
-
 }

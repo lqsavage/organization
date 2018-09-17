@@ -2,9 +2,8 @@ package cn.chinaunicom.servercfg.service;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.service.IService;
-
 import cn.chinaunicom.servercfg.entity.ServerConfig;
+import cn.chinaunicom.service.IHrService;
 
 /**
  * **************************************
@@ -14,7 +13,7 @@ import cn.chinaunicom.servercfg.entity.ServerConfig;
  * @version V1.0
 ***************************************
  */
-public interface ServerConfigService extends IService<ServerConfig> {
+public interface ServerConfigService extends IHrService<ServerConfig> {
 
 	/**
 	 * 

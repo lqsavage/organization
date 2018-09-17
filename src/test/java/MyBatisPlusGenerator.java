@@ -131,9 +131,9 @@ public class MyBatisPlusGenerator {
                 // 自定义 mapper 父类
                 // .setSuperMapperClass("com.baomidou.demo.TestMapper")
                 // 自定义 service 父类
-                // .setSuperServiceClass("com.baomidou.demo.TestService")
+                 .setSuperServiceClass("cn.chinaunicom.service.IHrService")
                 // 自定义 service 实现类父类
-                // .setSuperServiceImplClass("com.baomidou.demo.TestServiceImpl")
+                 .setSuperServiceImplClass("cn.chinaunicom.service.impl.HrServiceImpl")
                 // 自定义 controller 父类
                 //.setSuperControllerClass("com.tdx."+packageName+".controller.AbstractController")
                 // 【实体】是否生成字段常量（默认 false）

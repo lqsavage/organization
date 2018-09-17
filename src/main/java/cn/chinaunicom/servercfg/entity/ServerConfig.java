@@ -2,6 +2,10 @@ package cn.chinaunicom.servercfg.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +17,7 @@ import java.io.Serializable;
  * @since 2018-09-12
  */
 @TableName("hr_server_config")
+@ApiModel("服务管理")
 public class ServerConfig extends Model<ServerConfig> {
 
     private static final long serialVersionUID = 1L;
@@ -21,14 +26,17 @@ public class ServerConfig extends Model<ServerConfig> {
     /**
      * 服务路径
      */
+    @ApiModelProperty("服务路径")
     private String url;
     /**
      * 服务名称
      */
+    @ApiModelProperty("服务名称")
     private String name;
     /**
      * 模块名
      */
+    @ApiModelProperty("模块名")
     private String module;
 
 

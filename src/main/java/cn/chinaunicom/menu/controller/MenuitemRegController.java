@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "菜单注册", tags = "菜单注册")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/menuitemReg")
+@RequestMapping("/api/menuitemReg")
 public class MenuitemRegController {
 
 	@Autowired

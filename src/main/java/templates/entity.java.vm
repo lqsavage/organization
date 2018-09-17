@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 #end
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
@@ -32,6 +34,7 @@ import lombok.experimental.Accessors;
 #if(${table.convert})
 @TableName("${table.name}")
 #end
+@ApiModel("$!{table.comment}")
 #if(${superEntityClass})
 public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
 #elseif(${activeRecord})
@@ -51,6 +54,7 @@ public class ${entity} implements Serializable {
     /**
      * ${field.comment}
      */
+     @ApiModelProperty(value="${field.comment}")
 #end
 #if(${field.keyFlag})
 ## 主键
