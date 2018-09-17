@@ -42,6 +42,10 @@ public class FuncRegisterController {
 	@Autowired
 	FuncRegisterService service;
 	
+	/** 
+	*描述: （请描述该方法功能） 
+	*@return ResponseEntity<Object>
+	*/ 
 	@ApiOperation(value = "服务列表", notes = "服务列表", response = FuncRegister.class, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
@@ -57,6 +61,8 @@ public class FuncRegisterController {
                     message = "未查询到数据"
             )
     })
+	
+	
     @GetMapping("/list")
     public ResponseEntity<Object> getFuncList(){
 		List<FuncRegister> list = service.getFuncList();

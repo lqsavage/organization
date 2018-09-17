@@ -1,7 +1,7 @@
 package ${package.Mapper};
 
 import ${package.Entity}.${entity};
-import cn.chinaunicom.dao.HRBaseMapper;
+import cn.chinaunicom.dao.HrBaseMapper;
 
 /**
  * <p>
@@ -14,7 +14,7 @@ import cn.chinaunicom.dao.HRBaseMapper;
 #if(${kotlin})
 interface ${table.mapperName} : MyBaseMapper<${entity}>
 #else
-public interface ${table.mapperName} extends HRBaseMapper<${entity}> {
+public interface ${table.mapperName} extends HrBaseMapper<${entity}> {
 
 }
 #end

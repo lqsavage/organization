@@ -14,14 +14,7 @@ buildscript {
 		velocityVersion = '2.0'
 	}
 	repositories {
-		mavenLocal()
-		maven {
-			credentials {
-				username nexusUsername
-				password nexusPassword
-			}
-			url = new URL("http://10.0.210.95/nexus/repository/maven-public/")
-		}
+		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.12.RELEASE")
@@ -42,14 +35,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenLocal()
-	maven {
-		credentials {
-			username nexusUsername
-			password nexusPassword
-		}
-		url = new URL("http://10.0.210.95/nexus/repository/maven-public/")
-	}
+	mavenCentral()
 }
 
 dependencyManagement {

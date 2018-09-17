@@ -10,7 +10,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author zhw
- * @since 2018-09-13
+ * @since 2018-09-17
  */
 @TableName("hr_menuitem_reg")
 public class MenuitemReg extends Model<MenuitemReg> {

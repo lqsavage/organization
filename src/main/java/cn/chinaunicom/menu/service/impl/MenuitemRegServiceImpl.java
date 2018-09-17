@@ -1,13 +1,12 @@
 package cn.chinaunicom.menu.service.impl;
 
-import cn.chinaunicom.menu.dao.MenuitemRegMapper;
 import cn.chinaunicom.menu.entity.MenuitemReg;
+import cn.chinaunicom.menu.dao.MenuitemRegMapper;
 import cn.chinaunicom.menu.service.MenuitemRegService;
-
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 
 /**
@@ -16,7 +15,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
  * </p>
  *
  * @author zhw
- * @since 2018-09-13
+ * @since 2018-09-17
  */
 @Service
 public class MenuitemRegServiceImpl extends ServiceImpl<MenuitemRegMapper, MenuitemReg> implements MenuitemRegService {

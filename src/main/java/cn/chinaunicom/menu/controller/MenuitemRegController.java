@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.baomidou.mybatisplus.plugins.Page;
-
 import cn.chinaunicom.menu.entity.MenuitemReg;
 import cn.chinaunicom.menu.service.MenuitemRegService;
 import cn.chinaunicom.utils.MessageResponse;
@@ -29,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 描述: 菜单注册
  * @ClassName: cn.chinaunicom.func.controller.FuncRegisterController 
  * @author zhw 
- * @since 2018-09-13
+ * @since 2018-09-17
  * @version V1.0
  * **************************************
  */

@@ -1,7 +1,7 @@
 package cn.chinaunicom.menu.dao;
 
-import cn.chinaunicom.dao.HrBaseMapper;
 import cn.chinaunicom.menu.entity.MenuitemReg;
+import cn.chinaunicom.dao.HrBaseMapper;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import cn.chinaunicom.menu.entity.MenuitemReg;
  * </p>
  *
  * @author zhw
- * @since 2018-09-13
+ * @since 2018-09-17
  */
 public interface MenuitemRegMapper extends HrBaseMapper<MenuitemReg> {
 
