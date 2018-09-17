@@ -57,7 +57,7 @@ public class FuncRegisterController {
             )
     })
     @GetMapping("/list")
-    public ResponseEntity<Object> getFuncRegisterList(){
+    public ResponseEntity<Object> getFuncList(){
 		List<FuncRegister> list = service.getFuncRegisterList();
         if(list==null) {
             list = new ArrayList<FuncRegister>();
