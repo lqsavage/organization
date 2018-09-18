@@ -1,4 +1,4 @@
-package cn.chinaunicom.utils;
+package cn.chinaunicom.platform.utils;
 
 /**
  * **************************************

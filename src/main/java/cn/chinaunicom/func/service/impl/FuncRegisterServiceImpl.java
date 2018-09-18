@@ -3,7 +3,8 @@ package cn.chinaunicom.func.service.impl;
 import cn.chinaunicom.func.entity.FuncRegister;
 import cn.chinaunicom.func.dao.FuncRegisterMapper;
 import cn.chinaunicom.func.service.FuncRegisterService;
-import cn.chinaunicom.service.impl.HrServiceImpl;
+import cn.chinaunicom.platform.service.impl.HrServiceImpl;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,12 @@
-package cn.chinaunicom.servercfg.dao;
+package cn.chinaunicom.servicecfg.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import cn.chinaunicom.dao.HrBaseMapper;
-import cn.chinaunicom.servercfg.entity.ServerConfig;
+import cn.chinaunicom.platform.dao.HrBaseMapper;
+import cn.chinaunicom.servicecfg.entity.ServiceConfig;
 
 /**
  * **************************************
@@ -18,7 +18,7 @@ import cn.chinaunicom.servercfg.entity.ServerConfig;
  */
 @Repository
 @Mapper
-public interface ServerConfigMapper extends HrBaseMapper<ServerConfig> {
+public interface ServicerConfigMapper extends HrBaseMapper<ServiceConfig> {
 
 	/**
 	 * 
@@ -26,5 +26,5 @@ public interface ServerConfigMapper extends HrBaseMapper<ServerConfig> {
 	*@param module
 	*@return List<ServerConfig>
 	 */
-	List<ServerConfig> getByModle(String module);
+	List<ServiceConfig> getByModle(String module);
 }

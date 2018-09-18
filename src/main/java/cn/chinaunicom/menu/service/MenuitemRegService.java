@@ -1,7 +1,8 @@
 package cn.chinaunicom.menu.service;
 
 import cn.chinaunicom.menu.entity.MenuitemReg;
-import cn.chinaunicom.service.IHrService;
+import cn.chinaunicom.platform.service.IHrService;
+
 import java.util.List;
 
 /**

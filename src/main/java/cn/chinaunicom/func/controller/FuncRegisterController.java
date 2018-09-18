@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.baomidou.mybatisplus.plugins.Page;
 import cn.chinaunicom.func.entity.FuncRegister;
 import cn.chinaunicom.func.service.FuncRegisterService;
-import cn.chinaunicom.utils.MessageResponse;
+import cn.chinaunicom.platform.utils.MessageResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

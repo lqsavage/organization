@@ -3,7 +3,8 @@ package cn.chinaunicom.menu.service.impl;
 import cn.chinaunicom.menu.entity.MenuitemReg;
 import cn.chinaunicom.menu.dao.MenuitemRegMapper;
 import cn.chinaunicom.menu.service.MenuitemRegService;
-import cn.chinaunicom.service.impl.HrServiceImpl;
+import cn.chinaunicom.platform.service.impl.HrServiceImpl;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

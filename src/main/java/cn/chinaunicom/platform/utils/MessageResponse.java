@@ -1,4 +1,4 @@
-package cn.chinaunicom.utils;
+package cn.chinaunicom.platform.utils;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

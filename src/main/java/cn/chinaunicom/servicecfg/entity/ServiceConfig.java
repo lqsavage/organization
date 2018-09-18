@@ -1,4 +1,4 @@
-package cn.chinaunicom.servercfg.entity;
+package cn.chinaunicom.servicecfg.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 @TableName("hr_server_config")
 @ApiModel("服务管理")
-public class ServerConfig extends Model<ServerConfig> {
+public class ServiceConfig extends Model<ServiceConfig> {
 
     private static final long serialVersionUID = 1L;
 

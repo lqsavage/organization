@@ -1,9 +1,9 @@
-package cn.chinaunicom.service.impl;
+package cn.chinaunicom.platform.service.impl;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
-import cn.chinaunicom.service.IHrService;
+import cn.chinaunicom.platform.service.IHrService;
 
 /**
  * **************************************

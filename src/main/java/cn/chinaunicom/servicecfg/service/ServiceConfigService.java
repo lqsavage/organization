@@ -1,9 +1,9 @@
-package cn.chinaunicom.servercfg.service;
+package cn.chinaunicom.servicecfg.service;
 
 import java.util.List;
 
-import cn.chinaunicom.servercfg.entity.ServerConfig;
-import cn.chinaunicom.service.IHrService;
+import cn.chinaunicom.platform.service.IHrService;
+import cn.chinaunicom.servicecfg.entity.ServiceConfig;
 
 /**
  * **************************************
@@ -13,7 +13,7 @@ import cn.chinaunicom.service.IHrService;
  * @version V1.0
 ***************************************
  */
-public interface ServerConfigService extends IHrService<ServerConfig> {
+public interface ServiceConfigService extends IHrService<ServiceConfig> {
 
 	/**
 	 * 
@@ -21,7 +21,7 @@ public interface ServerConfigService extends IHrService<ServerConfig> {
 	*@param module
 	*@return List<ServerConfig>
 	 */
-	public List<ServerConfig> getByModule(String module);
+	public List<ServiceConfig> getByModule(String module);
 	
 	/**
 	 * 
@@ -29,5 +29,5 @@ public interface ServerConfigService extends IHrService<ServerConfig> {
 	*@param entity
 	*@return Integer
 	 */
-	public Integer saveServer(ServerConfig entity);
+	public Integer saveServer(ServiceConfig entity);
 }

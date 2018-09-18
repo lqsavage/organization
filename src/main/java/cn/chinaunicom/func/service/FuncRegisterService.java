@@ -1,7 +1,8 @@
 package cn.chinaunicom.func.service;
 
 import cn.chinaunicom.func.entity.FuncRegister;
-import cn.chinaunicom.service.IHrService;
+import cn.chinaunicom.platform.service.IHrService;
+
 import java.util.List;
 
 /**

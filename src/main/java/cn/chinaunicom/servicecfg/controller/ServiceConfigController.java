@@ -1,4 +1,4 @@
-package cn.chinaunicom.servercfg.controller;
+package cn.chinaunicom.servicecfg.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.plugins.Page;
 
-import cn.chinaunicom.servercfg.entity.ServerConfig;
-import cn.chinaunicom.servercfg.service.ServerConfigService;
-import cn.chinaunicom.utils.MessageResponse;
+import cn.chinaunicom.platform.utils.MessageResponse;
+import cn.chinaunicom.servicecfg.entity.ServiceConfig;
+import cn.chinaunicom.servicecfg.service.ServiceConfigService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -37,12 +37,12 @@ import io.swagger.annotations.ApiResponses;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/servercfg")
-public class ServerConfigController {
+public class ServiceConfigController {
 
 	@Autowired
-	ServerConfigService service;
+	ServiceConfigService service;
 	
-	@ApiOperation(value = "服务列表", notes = "服务列表", response = ServerConfig.class, httpMethod = "GET")
+	@ApiOperation(value = "服务列表", notes = "服务列表", response = ServiceConfig.class, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
     })
@@ -59,12 +59,12 @@ public class ServerConfigController {
     })
     @GetMapping("/list")
     public ResponseEntity<Object> getByModule(String module){
-		List<ServerConfig> list = null;
+		List<ServiceConfig> list = null;
 		if(!StringUtils.isEmpty(module)) {
 			list = service.getByModule(module);
 		}
         if(list==null) {
-            list = new ArrayList<ServerConfig>();
+            list = new ArrayList<ServiceConfig>();
         }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
@@ -80,7 +80,7 @@ public class ServerConfigController {
 	         )
 	})
 	@PostMapping("/save")
-	public ResponseEntity<Object> saveServer(ServerConfig serverConfig){
+	public ResponseEntity<Object> saveServer(ServiceConfig serverConfig){
 		MessageResponse vo = new MessageResponse();
         Integer i = service.saveServer(serverConfig);
         if(i>0) {

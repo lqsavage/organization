@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.chinaunicom.servercfg.entity.ServerConfig;
-import cn.chinaunicom.servercfg.service.ServerConfigService;
-import cn.chinaunicom.utils.Constant;
+import cn.chinaunicom.platform.utils.Constant;
+import cn.chinaunicom.servicecfg.entity.ServiceConfig;
+import cn.chinaunicom.servicecfg.service.ServiceConfigService;
 
 /**
  * **************************************
@@ -28,7 +28,7 @@ import cn.chinaunicom.utils.Constant;
 public class ServerConfigInterceptor implements HandlerInterceptor{
 
 	@Autowired
-	ServerConfigService service;
+	ServiceConfigService service;
 	
 	HashMap<String, String> serverMap = new HashMap<String, String>();
 	
@@ -54,9 +54,9 @@ public class ServerConfigInterceptor implements HandlerInterceptor{
 	}
 	
 	public void initServerMap() {
-		List<ServerConfig> selectByModule = service.getByModule(Constant.MODULE);
+		List<ServiceConfig> selectByModule = service.getByModule(Constant.MODULE);
 		if(selectByModule.size()>0) {
-			for (ServerConfig serverConfig : selectByModule) {
+			for (ServiceConfig serverConfig : selectByModule) {
 				serverMap.put(serverConfig.getUrl(), "");
 			}
 		}

@@ -1,4 +1,4 @@
-package cn.chinaunicom.service;
+package cn.chinaunicom.platform.service;
 
 import com.baomidou.mybatisplus.service.IService;
 

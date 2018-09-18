@@ -1,4 +1,4 @@
-package cn.chinaunicom.dao;
+package cn.chinaunicom.platform.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 

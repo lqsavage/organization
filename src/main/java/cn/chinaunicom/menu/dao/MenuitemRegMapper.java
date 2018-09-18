@@ -1,7 +1,7 @@
 package cn.chinaunicom.menu.dao;
 
 import cn.chinaunicom.menu.entity.MenuitemReg;
-import cn.chinaunicom.dao.HrBaseMapper;
+import cn.chinaunicom.platform.dao.HrBaseMapper;
 
 /**
  * <p>

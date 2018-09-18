@@ -1,7 +1,7 @@
 package cn.chinaunicom.func.dao;
 
 import cn.chinaunicom.func.entity.FuncRegister;
-import cn.chinaunicom.dao.HrBaseMapper;
+import cn.chinaunicom.platform.dao.HrBaseMapper;
 
 /**
  * <p>
