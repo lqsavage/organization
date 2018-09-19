@@ -7,6 +7,12 @@ CREATE TABLE `hr_server_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务管理';
 
+insert into `hr_server_config` (`id`, `url`, `name`, `module`) values('1040077121557397505','/api/funcRegister/list','节点列表','organization');
+insert into `hr_server_config` (`id`, `url`, `name`, `module`) values('1040077227576819713','/api/funcRegister/save','节点保存','organization');
+insert into `hr_server_config` (`id`, `url`, `name`, `module`) values('1040077362687934466','/api/menuitemReg/save','菜单保存','organization');
+insert into `hr_server_config` (`id`, `url`, `name`, `module`) values('1040077391284699138','/api/menuitemReg/list','菜单列表','organization');
+
+
 DROP TABLE IF EXISTS `hr_func_register`;
 CREATE TABLE `hr_func_register` (
   `id` bigint(20) unsigned NOT NULL,
