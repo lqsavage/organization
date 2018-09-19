@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * **************************************
  * 描述: 主应用入口
  * @ClassName: cn.chinaunicom.OrganizationApplication 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
  * **************************************
  */

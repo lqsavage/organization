@@ -11,8 +11,8 @@ import io.swagger.annotations.ApiModelProperty;
  * 菜单注册
  * </p>
  *
- * @author zhw
- * @since 2018-09-17
+ * @author zuohongwei
+ * @since 2018-09-19
  */
 @TableName("hr_menuitem_reg")
 @ApiModel("菜单注册")

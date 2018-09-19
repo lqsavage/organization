@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * **************************************
  * 描述: 接口返回信息实体类 
  * @ClassName: cn.chinaunicom.utils.MessageResponse 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

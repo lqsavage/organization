@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponses;
  * **************************************
  * 描述: 服务管理
  * @ClassName: cn.chinaunicom.servercfg.controller.ServerConfigController 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

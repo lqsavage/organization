@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
  * **************************************
  * 描述: 菜单注册
  * @ClassName: cn.chinaunicom.func.controller.FuncRegisterController 
- * @author zhw 
- * @since 2018-09-17
+ * @author zuohongwei 
+ * @since 2018-09-19
  * @version V1.0
  * **************************************
  */

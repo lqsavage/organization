@@ -2,7 +2,6 @@ package cn.chinaunicom.menu.service;
 
 import cn.chinaunicom.menu.entity.MenuitemReg;
 import cn.chinaunicom.platform.service.IHrService;
-
 import java.util.List;
 
 /**
@@ -10,8 +9,8 @@ import java.util.List;
  * 菜单注册 服务类
  * </p>
  *
- * @author zhw
- * @since 2018-09-17
+ * @author zuohongwei
+ * @since 2018-09-19
  */
 public interface MenuitemRegService extends IHrService<MenuitemReg> {
 

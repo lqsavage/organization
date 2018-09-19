@@ -19,7 +19,7 @@ import cn.chinaunicom.interceptor.ServerConfigInterceptor;
  * **************************************
  * 描述: web设置
  * @ClassName: cn.chinaunicom.config.WebConfig 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

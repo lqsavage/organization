@@ -65,7 +65,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 public class MyBatisPlusGenerator {
 
     private static String packageName="menu";    //文件路径
-    private static String authorName="zhw";     //作者
+    private static String authorName="zuohongwei";     //作者
     private static String table="hr_menuitem_reg";                  //table名字
     private static String prefix="hr_";                     //table前缀
     private static File file = new File("");
@@ -131,9 +131,9 @@ public class MyBatisPlusGenerator {
                 // 自定义 mapper 父类
                 // .setSuperMapperClass("com.baomidou.demo.TestMapper")
                 // 自定义 service 父类
-                 .setSuperServiceClass("cn.chinaunicom.service.IHrService")
+                 .setSuperServiceClass("cn.chinaunicom.platform.service.IHrService")
                 // 自定义 service 实现类父类
-                 .setSuperServiceImplClass("cn.chinaunicom.service.impl.HrServiceImpl")
+                 .setSuperServiceImplClass("cn.chinaunicom.platform.service.impl.HrServiceImpl")
                 // 自定义 controller 父类
                 //.setSuperControllerClass("com.tdx."+packageName+".controller.AbstractController")
                 // 【实体】是否生成字段常量（默认 false）

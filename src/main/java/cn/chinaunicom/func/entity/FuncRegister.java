@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 节点注册
  * </p>
  *
- * @author zhw
+ * @author zuohongwei
  * @since 2018-09-17
  */
 @TableName("hr_func_register")

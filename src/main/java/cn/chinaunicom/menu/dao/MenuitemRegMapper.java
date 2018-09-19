@@ -8,8 +8,8 @@ import cn.chinaunicom.platform.dao.HrBaseMapper;
  * 菜单注册 Mapper 接口
  * </p>
  *
- * @author zhw
- * @since 2018-09-17
+ * @author zuohongwei
+ * @since 2018-09-19
  */
 public interface MenuitemRegMapper extends HrBaseMapper<MenuitemReg> {
 

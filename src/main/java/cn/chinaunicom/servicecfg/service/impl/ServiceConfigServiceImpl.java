@@ -14,7 +14,7 @@ import cn.chinaunicom.servicecfg.service.ServiceConfigService;
  * **************************************
  * 描述: 服务管理service实现类 
  * @ClassName: cn.chinaunicom.servercfg.service.impl.ServerConfigServiceImpl 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

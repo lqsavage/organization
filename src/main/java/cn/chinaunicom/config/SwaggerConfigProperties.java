@@ -9,7 +9,7 @@ import java.io.Serializable;
  * **************************************
  * 描述: Swagger参数实体类
  * @ClassName: cn.chinaunicom.config.SwaggerConfigProperties 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

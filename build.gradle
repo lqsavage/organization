@@ -55,7 +55,7 @@ dependencies {
 	compile("com.baomidou:mybatisplus-spring-boot-starter:${springMybatisPlusVersion}")
 	compile("org.apache.velocity:velocity-engine-core:${velocityVersion}")
 	compile("com.alibaba:druid:${druidVersion}")
-	compile("com.chinaunicom.ihr:quick-queue-redis:${quickQueueRedisVersion}")
+	//compile("com.chinaunicom.ihr:quick-queue-redis:${quickQueueRedisVersion}")
 	compile("com.alibaba:fastjson:${fastjsonVersion}")
 
 	compile("io.springfox:springfox-swagger2:${springFoxSwaggerVersion}")

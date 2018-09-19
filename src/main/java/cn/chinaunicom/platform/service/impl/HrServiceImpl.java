@@ -9,7 +9,7 @@ import cn.chinaunicom.platform.service.IHrService;
  * **************************************
  * 描述:项目Service实现基类 
  * @ClassName: cn.chinaunicom.service.impl.HrServiceImpl 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

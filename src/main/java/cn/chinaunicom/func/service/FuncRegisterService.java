@@ -10,7 +10,7 @@ import java.util.List;
  * 节点注册 服务类
  * </p>
  *
- * @author zhw
+ * @author zuohongwei
  * @since 2018-09-17
  */
 public interface FuncRegisterService extends IHrService<FuncRegister> {

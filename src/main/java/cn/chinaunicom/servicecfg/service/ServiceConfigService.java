@@ -9,7 +9,7 @@ import cn.chinaunicom.servicecfg.entity.ServiceConfig;
  * **************************************
  * 描述: 服务管理
  * @ClassName: cn.chinaunicom.servercfg.service.ServerConfigService 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

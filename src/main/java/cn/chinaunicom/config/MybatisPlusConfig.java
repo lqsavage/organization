@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
  * **************************************
  * 描述: Mybatis设置
  * @ClassName: cn.chinaunicom.config.MybatisPlusConfig 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

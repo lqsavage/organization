@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * **************************************
  * 描述: 节点注册
  * @ClassName: cn.chinaunicom.func.controller.FuncRegisterController 
- * @author zhw 
+ * @author zuohongwei 
  * @since 2018-09-17
  * @version V1.0
  * **************************************

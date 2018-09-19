@@ -4,7 +4,7 @@ package cn.chinaunicom.platform.utils;
  * **************************************
  * 描述: 常量类
  * @ClassName: cn.chinaunicom.utils.Constant 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

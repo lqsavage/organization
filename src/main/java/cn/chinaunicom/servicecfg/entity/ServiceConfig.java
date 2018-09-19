@@ -13,7 +13,7 @@ import java.io.Serializable;
  * 
  * </p>
  *
- * @author zhw
+ * @author zuohongwei
  * @since 2018-09-12
  */
 @TableName("hr_server_config")

@@ -16,7 +16,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
  * ************************************** 
  * 描述: Druid设置
  * @ClassName: cn.chinaunicom.config.DruidConfig
- * @author zhw
+ * @author zuohongwei
  * @version V1.0
  ***************************************
  */

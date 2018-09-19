@@ -12,7 +12,7 @@ import cn.chinaunicom.servicecfg.entity.ServiceConfig;
  * **************************************
  * 描述: 服务管理mapper 
  * @ClassName: cn.chinaunicom.servercfg.dao.ServerConfigMapper 
- * @author zhw 
+ * @author zuohongwei 
  * @version V1.0
 ***************************************
  */

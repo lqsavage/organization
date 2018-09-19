@@ -8,7 +8,7 @@ import cn.chinaunicom.platform.dao.HrBaseMapper;
  * 节点注册 Mapper 接口
  * </p>
  *
- * @author zhw
+ * @author zuohongwei
  * @since 2018-09-17
  */
 public interface FuncRegisterMapper extends HrBaseMapper<FuncRegister> {
