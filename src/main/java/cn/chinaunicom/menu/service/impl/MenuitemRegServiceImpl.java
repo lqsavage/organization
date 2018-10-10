@@ -1,5 +1,6 @@
 package cn.chinaunicom.menu.service.impl;
 
+import cn.chinaunicom.menu.entity.MenuList;
 import cn.chinaunicom.menu.entity.MenuitemReg;
 import cn.chinaunicom.menu.dao.MenuitemRegMapper;
 import cn.chinaunicom.menu.service.MenuitemRegService;
@@ -25,11 +26,16 @@ public class MenuitemRegServiceImpl extends HrServiceImpl<MenuitemRegMapper, Men
 	
 	@Override
 	public List<MenuitemReg> getMenuitemRegList() {
-		return mapper.selectList(new EntityWrapper<MenuitemReg>().eq("1", "1"));
+		return mapper.selectList(new EntityWrapper<MenuitemReg>().eq("1", "1").orderBy("code"));
 	}
 
 	@Override
 	public Integer saveMenuitemReg(MenuitemReg entity) {
 		return mapper.insert(entity);
+	}
+
+	@Override
+	public List<MenuList> getMenuList() {
+		return mapper.getMenuList();
 	}
 }

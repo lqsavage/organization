@@ -26,11 +26,13 @@ CREATE TABLE `hr_func_register` (
 
 DROP TABLE IF EXISTS `hr_menuitem_reg`;
 CREATE TABLE `hr_menuitem_reg` (
-  `id` bigint(20) unsigned NOT NULL,
-  `funcode` varchar(64) NOT NULL COMMENT '节点编码',
-  `name` varchar(255) NOT NULL COMMENT '菜单名称',
-  `code` varchar(64) NOT NULL COMMENT '菜单编码',
-  `description` varchar(255) COMMENT '描述',
-  `module` varchar(64) NOT NULL DEFAULT '' COMMENT '所属模块',
+  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `funcode` VARCHAR(64) COMMENT '节点编码',
+  `name` VARCHAR(255) NOT NULL COMMENT '菜单名称',
+  `code` VARCHAR(64) NOT NULL COMMENT '菜单编码',
+  `description` VARCHAR(255) COMMENT '描述',
+  `module` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '所属模块',
+  `pid` BIGINT(20) NOT NULL COMMENT '父菜单主键',
+  `iconUrl` VARCHAR(64) COMMENT '图标',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单注册';
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COMMENT='菜单注册';

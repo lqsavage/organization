@@ -21,6 +21,8 @@ public class MenuitemReg extends Model<MenuitemReg> {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    
+    private Long pid;
     /**
      * 节点编码
      */
@@ -46,9 +48,29 @@ public class MenuitemReg extends Model<MenuitemReg> {
      */
      @ApiModelProperty(value="所属模块")
     private String module;
+     /**
+      * 图标
+      */
+      @ApiModelProperty(value="图标")
+    private String iconUrl;
 
+    public Long getPid() {
+		return pid;
+	}
 
-    public Long getId() {
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
+
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
+	public Long getId() {
         return id;
     }
 

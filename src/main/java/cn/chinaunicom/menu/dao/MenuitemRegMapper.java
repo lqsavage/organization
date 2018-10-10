@@ -1,5 +1,8 @@
 package cn.chinaunicom.menu.dao;
 
+import java.util.List;
+
+import cn.chinaunicom.menu.entity.MenuList;
 import cn.chinaunicom.menu.entity.MenuitemReg;
 import cn.chinaunicom.platform.dao.HrBaseMapper;
 
@@ -13,4 +16,5 @@ import cn.chinaunicom.platform.dao.HrBaseMapper;
  */
 public interface MenuitemRegMapper extends HrBaseMapper<MenuitemReg> {
 
+	List<MenuList> getMenuList();
 }

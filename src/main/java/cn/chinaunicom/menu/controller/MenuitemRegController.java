@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.baomidou.mybatisplus.plugins.Page;
+
+import cn.chinaunicom.menu.entity.MenuList;
 import cn.chinaunicom.menu.entity.MenuitemReg;
 import cn.chinaunicom.menu.service.MenuitemRegService;
 import cn.chinaunicom.platform.utils.MessageResponse;
@@ -35,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "菜单注册", tags = "菜单注册")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/menuitemReg")
+@RequestMapping("/menuitemReg")
 public class MenuitemRegController {
 
 	@Autowired
@@ -85,6 +87,30 @@ public class MenuitemRegController {
         	vo.setMsg("添加失败");
         }
         return new ResponseEntity<>(vo, HttpStatus.OK);
+    }
+	
+	@ApiOperation(value = "菜单列表", notes = "菜单列表", response = MenuList.class, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+    })
+    @ApiResponses({
+            @ApiResponse(
+                    code = 200,
+                    message = "获取数据成功",
+                    response = Page.class
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "未查询到数据"
+            )
+    })
+    @GetMapping("/menulist")
+    public ResponseEntity<Object> getMenuList(){
+		List<MenuList> list = service.getMenuList();
+        if(list==null) {
+            list = new ArrayList<MenuList>();
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
 

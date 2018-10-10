@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.chinaunicom.platform.service.impl.HrServiceImpl;
-import cn.chinaunicom.servicecfg.dao.ServicerConfigMapper;
+import cn.chinaunicom.servicecfg.dao.ServiceConfigMapper;
 import cn.chinaunicom.servicecfg.entity.ServiceConfig;
 import cn.chinaunicom.servicecfg.service.ServiceConfigService;
 
@@ -19,10 +19,10 @@ import cn.chinaunicom.servicecfg.service.ServiceConfigService;
 ***************************************
  */
 @Service
-public class ServiceConfigServiceImpl extends HrServiceImpl<ServicerConfigMapper, ServiceConfig> implements ServiceConfigService {
+public class ServiceConfigServiceImpl extends HrServiceImpl<ServiceConfigMapper, ServiceConfig> implements ServiceConfigService {
 
 	@Autowired
-	ServicerConfigMapper mapper;
+	ServiceConfigMapper mapper;
 	
 	@Override
 	public List<ServiceConfig> getByModule(String module) {

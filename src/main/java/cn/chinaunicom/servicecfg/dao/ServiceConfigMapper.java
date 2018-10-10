@@ -18,7 +18,7 @@ import cn.chinaunicom.servicecfg.entity.ServiceConfig;
  */
 @Repository
 @Mapper
-public interface ServicerConfigMapper extends HrBaseMapper<ServiceConfig> {
+public interface ServiceConfigMapper extends HrBaseMapper<ServiceConfig> {
 
 	/**
 	 * 

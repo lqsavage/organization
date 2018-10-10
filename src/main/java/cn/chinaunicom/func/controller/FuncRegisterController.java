@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "节点注册", tags = "节点注册")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/funcRegister")
+@RequestMapping("/funcRegister")
 public class FuncRegisterController {
 
 	@Autowired
