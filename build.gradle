@@ -14,7 +14,9 @@ buildscript {
 		velocityVersion = '2.0'
 	}
 	repositories {
-		mavenCentral()
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.12.RELEASE")
@@ -35,7 +37,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+	maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
 }
 
 dependencyManagement {
@@ -64,6 +68,7 @@ dependencies {
 	compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
 
 	compile("com.amazonaws:aws-java-sdk-s3")
+	compile group:'cn.afterturn', name:'easypoi-spring-boot-starter', version:'3.2.0'
 
 	runtime('mysql:mysql-connector-java')
 
