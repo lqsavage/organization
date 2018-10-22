@@ -64,9 +64,11 @@ public class OrgHeaderBatchController {
             )
     })
     @GetMapping("/list")
-    public ResponseEntity<Object> getOrgHeaderBatchList(@RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+    public ResponseEntity<Object> getOrgHeaderBatchList(
+    		@RequestParam(value = "batchCode", required = false) String batchCode,
+    		@RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize){
-        Page<OrgHeaderBatch> policyRulePage = service.getOrgHeaderBatchList(
+        Page<OrgHeaderBatch> policyRulePage = service.getOrgHeaderBatchList(batchCode,
                 pageNumber,
                 pageSize);
 

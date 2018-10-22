@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -30,9 +31,14 @@ public class OrgHeaderBatchServiceImpl extends HrServiceImpl<OrgHeaderBatchMappe
 	OrgHeaderBatchMapper mapper;
 	
 	@Override
-	public Page<OrgHeaderBatch> getOrgHeaderBatchList(Integer pageNumber, Integer pageSize) {
+	public Page<OrgHeaderBatch> getOrgHeaderBatchList(String batchCode,Integer pageNumber, Integer pageSize) {
 		Page<OrgHeaderBatch> page = new Page<OrgHeaderBatch>(pageNumber, pageSize);
-		return page.setRecords(mapper.selectPage(page, new EntityWrapper<OrgHeaderBatch>().eq("1", "1")));
+		EntityWrapper<OrgHeaderBatch> entityWrapper = new EntityWrapper<OrgHeaderBatch>();
+		entityWrapper.eq("1", "1");
+		if(!StringUtils.isEmpty(batchCode)) {
+			entityWrapper.like("DOC_CODE", batchCode);
+		}
+		return page.setRecords(mapper.selectPage(page,entityWrapper ));
 	}
 
 	@Override
