@@ -64,10 +64,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  */
 public class MyBatisPlusGenerator {
 
-    private static String packageName="menu";    //文件路径
+    private static String packageName="approval";    //文件路径
     private static String authorName="zuohongwei";     //作者
-    private static String table="hr_menuitem_reg";                  //table名字
-    private static String prefix="hr_";                     //table前缀
+    private static String table="ehrcuc_org_header_batch";                  //table名字
+    private static String prefix="ehrcuc_";                     //table前缀
     private static File file = new File("");
     private static String path = file.getAbsolutePath();
     private static String DB_URL = "jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8";
@@ -172,7 +172,7 @@ public class MyBatisPlusGenerator {
                     // 自定义输出文件目录
                     @Override
                     public String outputFile(TableInfo tableInfo) {
-                        return path+"/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                        return path+"/src/main/java/cn/chinaunicom/"+packageName+"/dao/xml/" + tableInfo.getEntityName() + "Mapper.xml";
                     }
                 }))
         ).setTemplate(
