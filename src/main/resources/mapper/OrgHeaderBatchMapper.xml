@@ -84,4 +84,12 @@
 		order by t.doc_status,t.attribute9 DESC
 	</select>
 	
+	<select id="getAttachmentListByHeadId" resultType="java.util.HashMap">
+		select @r:=@r+1 as rownum,eoatt.att_id as attId,
+		       eoatt.att_name as attName,
+		       eoatt.doc_header_id as docHeaderId
+		  from ehrcuc_org_attachment eoatt,(select @r:=0) b
+		 where eoatt.doc_header_id = #{id}
+	</select>
+	
 </mapper>

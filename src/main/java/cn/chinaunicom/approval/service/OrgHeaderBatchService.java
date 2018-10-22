@@ -18,7 +18,7 @@ import cn.chinaunicom.platform.service.IHrService;
  */
 public interface OrgHeaderBatchService extends IHrService<OrgHeaderBatch> {
 
-	public List<OrgHeaderBatch> getOrgHeaderBatchList();
+	public Page<OrgHeaderBatch> getOrgHeaderBatchList(Integer pageNumber, Integer pageSize);
 	
 	public Integer saveOrgHeaderBatch(OrgHeaderBatch entity);
 	
@@ -36,5 +36,7 @@ public interface OrgHeaderBatchService extends IHrService<OrgHeaderBatch> {
             Integer xBusinessGroupId,
             Integer pageNumber,
             Integer pageSize);
+	
+	public List<Map<String, Object>> getAttachmentListByHeadId(Long id);
 	
 }

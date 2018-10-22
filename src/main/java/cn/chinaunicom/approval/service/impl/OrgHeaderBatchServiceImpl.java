@@ -30,8 +30,9 @@ public class OrgHeaderBatchServiceImpl extends HrServiceImpl<OrgHeaderBatchMappe
 	OrgHeaderBatchMapper mapper;
 	
 	@Override
-	public List<OrgHeaderBatch> getOrgHeaderBatchList() {
-		return mapper.selectList(new EntityWrapper<OrgHeaderBatch>().eq("1", "1"));
+	public Page<OrgHeaderBatch> getOrgHeaderBatchList(Integer pageNumber, Integer pageSize) {
+		Page<OrgHeaderBatch> page = new Page<OrgHeaderBatch>(pageNumber, pageSize);
+		return page.setRecords(mapper.selectPage(page, new EntityWrapper<OrgHeaderBatch>().eq("1", "1")));
 	}
 
 	@Override
@@ -62,5 +63,10 @@ public class OrgHeaderBatchServiceImpl extends HrServiceImpl<OrgHeaderBatchMappe
 	@Override
 	public Integer deleteHeaderBatch(Long id) {
 		return mapper.deleteById(id);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getAttachmentListByHeadId(Long id) {
+		return mapper.getAttachmentListByHeadId(id);
 	}
 }

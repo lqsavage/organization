@@ -64,12 +64,21 @@ public class OrgHeaderBatchController {
             )
     })
     @GetMapping("/list")
-    public ResponseEntity<Object> getOrgHeaderBatchList(){
-		List<OrgHeaderBatch> list = service.getOrgHeaderBatchList();
-        if(list==null) {
-            list = new ArrayList<OrgHeaderBatch>();
+    public ResponseEntity<Object> getOrgHeaderBatchList(@RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize){
+        Page<OrgHeaderBatch> policyRulePage = service.getOrgHeaderBatchList(
+                pageNumber,
+                pageSize);
+
+        MessageResponse dto = new MessageResponse();
+        if (null != policyRulePage) {
+            dto.setMsg("查询成功");
+            return new ResponseEntity<>(policyRulePage, HttpStatus.OK);
+        } else {
+            String msg = "未找到变更依据数据";
+            dto.setMsg(msg);
+            return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 	
 	@ApiOperation(value = "删除前置流程业务表", notes = "删除前置流程业务表", response = MessageResponse.class, httpMethod = "DELETE")
@@ -194,6 +203,30 @@ public class OrgHeaderBatchController {
             dto.setMsg(msg);
             return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @ApiOperation(value = "附件列表", notes = "附件列表", response = OrgHeaderBatch.class, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+    })
+    @ApiResponses({
+            @ApiResponse(
+                    code = 200,
+                    message = "获取数据成功",
+                    response = Page.class
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "未查询到数据"
+            )
+    })
+    @GetMapping("/getAttachData")
+    public ResponseEntity<Object> getAttachData(Long id){
+		List<Map<String,Object>> list = service.getAttachmentListByHeadId(id);
+        if(list==null) {
+            list = new ArrayList<Map<String,Object>>();
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
 
