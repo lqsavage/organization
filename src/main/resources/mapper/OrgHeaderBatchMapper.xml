@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinaunicom.approval.dao.OrgHeaderBatchMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.approval.entity.OrgHeaderBatch">
+        <id column="BATCH_HEADER_ID" property="batchHeaderId" />
+        <result column="WORKFLOW_INSTANCE_ID" property="workflowInstanceId" />
+        <result column="DOC_CODE" property="docCode" />
+        <result column="DOC_VERIFIER" property="docVerifier" />
+        <result column="DOC_DATE" property="docDate" />
+        <result column="DOC_STATUS" property="docStatus" />
+        <result column="DOC_SUBJECT" property="docSubject" />
+        <result column="DOC_DESCRIPTION" property="docDescription" />
+        <result column="DOCUMENT_ID" property="documentId" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+        <result column="ROOTID" property="rootid" />
+        <result column="RANG_ID" property="rangId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BATCH_HEADER_ID, WORKFLOW_INSTANCE_ID, DOC_CODE, DOC_VERIFIER, DOC_DATE, DOC_STATUS, DOC_SUBJECT, DOC_DESCRIPTION, DOCUMENT_ID, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, ATTRIBUTE1, ATTRIBUTE3, ATTRIBUTE2, ATTRIBUTE4, ATTRIBUTE5, ATTRIBUTE6, ATTRIBUTE7, ATTRIBUTE8, ATTRIBUTE9, ATTRIBUTE10, ROOTID, RANG_ID
+    </sql>
+
+	<select id="searchAllBaInfo" resultType="java.util.HashMap">
+		select t.batch_header_id as BATCH_HEADER_ID,
+		       t.workflow_instance_id as WORKFLOW_INSTANCE_ID,
+		       t.doc_code as DOC_CODE,
+		       t.doc_verifier as DOC_VERIFIER,
+		       DATE_FORMAT( t.doc_date,'%Y-%m-%d')  as DOC_DATE,
+		       t.doc_status as DOC_STATUS,
+		       t.doc_subject as DOC_SUBJECT,
+		       t.document_id as DOCUMENT_ID,
+		       (select b.full_name
+		          from EHRBASE_EMP_BASIC b
+		         where b.person_id = t.attribute10) as ATTRIBUTE10,
+		       t.attribute9  as ATTRIBUTE9,
+		       (select b.full_name
+		          from EHRBASE_EMP_BASIC b
+		         where b.person_id = t.attribute8) as ATTRIBUTE8,
+		       t.attribute7 as ATTRIBUTE7,
+		       t.attribute6 as ATTRIBUTE6,
+		       t.attribute5 as ATTRIBUTE5,
+		       t.attribute4 as ATTRIBUTE4,
+		       (select count(1) from ehrcuc_org_header_doc d where d.batch_id = t.batch_header_id) as batCount
+		  from EHRCUC_ORG_HEADER_BATCH t Where 1=1 
+		<if test="batchCode != null and batchCode != ''">
+            AND t.doc_code = #{ batchCode }
+        </if>
+		<if test="workFlowStatus != null and workFlowStatus != ''">
+            AND t.doc_status = #{ workFlowStatus }
+        </if>
+		<if test="batchVerifier != null and batchVerifier != ''">
+            AND t.doc_verifier = #{ batchVerifier }
+        </if>
+		<if test="fullName != null and fullName != ''">
+            AND (select b.full_name
+	          from EHRBASE_EMP_BASIC b
+	         where b.person_id = t.attribute8) like concat(concat('%',#{batchVerifier}),'%')
+        </if>
+        <if test="batDateS != null and batDateS != ''">
+            AND date_format(t.attribute9,'%Y-%m-%d') &gt;= date_format(#{batDateS},'%Y-%m-%d')
+        </if>
+		<if test="batDateE != null and batDateE != ''">
+            AND date_format(t.attribute9,'%Y-%m-%d') &lt;= date_format(#{batDateE},'%Y-%m-%d')
+        </if>
+		<if test="operatorId != null and operatorId != ''">
+            AND t.create_by = #{operatorId}
+		</if> 
+		order by t.doc_status,t.attribute9 DESC
+	</select>
+	
+</mapper>

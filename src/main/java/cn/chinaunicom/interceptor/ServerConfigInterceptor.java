@@ -40,6 +40,10 @@ public class ServerConfigInterceptor implements HandlerInterceptor{
 			if(serverMap.size()==0) {
 				initServerMap();
 			}
+			String[] split = path.split("/");
+			if(null != split && split.length>4){
+				path = "/"+split[1]+"/"+split[2]+"/"+split[3];
+			}
 			if(serverMap.containsKey(path)) {
 				return true;
 			}else {

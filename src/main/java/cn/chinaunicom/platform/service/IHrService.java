@@ -12,4 +12,15 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IHrService<T> extends IService<T>{
 
+	/**
+     * 获取页数
+     *
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
+    default Integer getPageNumber(Integer pageNumber, Integer pageSize) {
+
+        return (pageNumber - 1) * pageSize;
+    }
 }
