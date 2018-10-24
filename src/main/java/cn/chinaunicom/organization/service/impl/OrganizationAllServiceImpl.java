@@ -6,7 +6,6 @@ import cn.chinaunicom.organization.dao.OrganizationAllMapper;
 import cn.chinaunicom.organization.service.OrganizationAllService;
 import cn.chinaunicom.platform.service.impl.HrServiceImpl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +37,17 @@ public class OrganizationAllServiceImpl extends HrServiceImpl<OrganizationAllMap
 	public Integer saveOrganizationAll(OrganizationAll entity) {
 		return mapper.insert(entity);
 	}
-
+	
+	@Override
+	public Integer updateOrganizationAll(OrganizationAll entity) {
+		return mapper.updateById(entity);
+	}
+	
+	@Override
+	public Integer deleteOrganizationAll(Long id) {
+		return mapper.deleteById(id);
+	}
+	
 	@Override
 	public List<OrgTree> getOrganizationTree(String id, Boolean isSelf) {
 		Map<String,Object> params = new HashMap<String,Object>();

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import cn.chinaunicom.organization.entity.OrgTree;
@@ -78,7 +81,7 @@ public class OrganizationAllController {
 	         )
 	})
 	@PostMapping("/save")
-	public ResponseEntity<Object> saveOrganizationAll(OrganizationAll entity){
+	public ResponseEntity<Object> saveOrganizationAll(@RequestBody OrganizationAll entity){
 		MessageResponse vo = new MessageResponse();
         Integer i = service.saveOrganizationAll(entity);
         if(i>0) {
@@ -88,7 +91,52 @@ public class OrganizationAllController {
         }
         return new ResponseEntity<>(vo, HttpStatus.OK);
     }
-	
+    
+    @ApiOperation(value = "更新组织信息表", notes = "更新组织信息表", response = MessageResponse.class, httpMethod = "POST")
+	@ApiImplicitParams({
+    @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+	})
+	@ApiResponses({
+	         @ApiResponse(
+	                 code = 200,
+	                 message = "添加成功"
+	         )
+	})
+	@PostMapping("/update")
+	public ResponseEntity<Object> updateOrganizationAll(@RequestBody OrganizationAll entity){
+		MessageResponse vo = new MessageResponse();
+        Integer i = service.updateOrganizationAll(entity);
+        if(i>0) {
+        	vo.setMsg("更新成功");
+        }else {
+        	vo.setMsg("更新失败");
+        }
+        return new ResponseEntity<>(vo, HttpStatus.OK);
+    }
+    
+    @ApiOperation(value = "删除组织信息表", notes = "删除组织信息表", response = MessageResponse.class, httpMethod = "POST")
+	@ApiImplicitParams({
+    @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+	})
+	@ApiResponses({
+	         @ApiResponse(
+	                 code = 200,
+	                 message = "删除成功"
+	         )
+	})
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Object> deleteOrganizationAll(@PathVariable("id") Long id){
+		MessageResponse vo = new MessageResponse();
+        Integer i = service.deleteOrganizationAll(id);
+        if(i>0) {
+        	vo.setMsg("删除成功");
+        }else {
+        	vo.setMsg("删除失败");
+        }
+        return new ResponseEntity<>(vo, HttpStatus.OK);
+    }
+    
+
 	@ApiOperation(value = "组织信息树", notes = "组织信息树", response = OrganizationAll.class, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")

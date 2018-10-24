@@ -19,6 +19,10 @@ public interface OrganizationAllService extends IHrService<OrganizationAll> {
 	
 	public Integer saveOrganizationAll(OrganizationAll entity);
 	
+	public Integer updateOrganizationAll(OrganizationAll entity);
+	
+	public Integer deleteOrganizationAll(Long id);
+	
 	public List<OrgTree> getOrganizationTree(String id,Boolean isSelf);
 	
 }

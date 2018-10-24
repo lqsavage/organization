@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import com.baomidou.mybatisplus.plugins.Page;
 import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};
@@ -95,13 +98,57 @@ public class ${table.controllerName} {
 	         )
 	})
 	@PostMapping("/save")
-	public ResponseEntity<Object> save${entity}(${entity} entity){
+	public ResponseEntity<Object> save${entity}(@RequestBody ${entity} entity){
 		MessageResponse vo = new MessageResponse();
         Integer i = service.save${entity}(entity);
         if(i>0) {
         	vo.setMsg("添加成功");
         }else {
         	vo.setMsg("添加失败");
+        }
+        return new ResponseEntity<>(vo, HttpStatus.OK);
+    }
+    
+    @ApiOperation(value = "更新$!{table.comment}", notes = "更新$!{table.comment}", response = MessageResponse.class, httpMethod = "POST")
+	@ApiImplicitParams({
+    @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+	})
+	@ApiResponses({
+	         @ApiResponse(
+	                 code = 200,
+	                 message = "添加成功"
+	         )
+	})
+	@PostMapping("/update")
+	public ResponseEntity<Object> update${entity}(@RequestBody ${entity} entity){
+		MessageResponse vo = new MessageResponse();
+        Integer i = service.update${entity}(entity);
+        if(i>0) {
+        	vo.setMsg("更新成功");
+        }else {
+        	vo.setMsg("更新失败");
+        }
+        return new ResponseEntity<>(vo, HttpStatus.OK);
+    }
+    
+    @ApiOperation(value = "删除$!{table.comment}", notes = "删除$!{table.comment}", response = MessageResponse.class, httpMethod = "POST")
+	@ApiImplicitParams({
+    @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+	})
+	@ApiResponses({
+	         @ApiResponse(
+	                 code = 200,
+	                 message = "删除成功"
+	         )
+	})
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Object> delete${entity}(@PathVariable("id") Long id){
+		MessageResponse vo = new MessageResponse();
+        Integer i = service.delete${entity}(id);
+        if(i>0) {
+        	vo.setMsg("删除成功");
+        }else {
+        	vo.setMsg("删除失败");
         }
         return new ResponseEntity<>(vo, HttpStatus.OK);
     }

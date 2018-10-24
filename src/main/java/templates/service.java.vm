@@ -21,5 +21,9 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
 	
 	public Integer save${entity}(${entity} entity);
 	
+	public Integer update${entity}(${entity} entity);
+	
+	public Integer delete${entity}(Long id);
+	
 }
 #end
