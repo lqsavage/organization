@@ -31,12 +31,12 @@ public class OrgHeaderBatchServiceImpl extends HrServiceImpl<OrgHeaderBatchMappe
 	OrgHeaderBatchMapper mapper;
 	
 	@Override
-	public Page<OrgHeaderBatch> getOrgHeaderBatchList(String batchCode,Integer pageNumber, Integer pageSize) {
+	public Page<OrgHeaderBatch> getOrgHeaderBatchList(String name,Integer pageNumber, Integer pageSize) {
 		Page<OrgHeaderBatch> page = new Page<OrgHeaderBatch>(pageNumber, pageSize);
 		EntityWrapper<OrgHeaderBatch> entityWrapper = new EntityWrapper<OrgHeaderBatch>();
 		entityWrapper.eq("1", "1");
-		if(!StringUtils.isEmpty(batchCode)) {
-			entityWrapper.like("DOC_CODE", batchCode);
+		if(!StringUtils.isEmpty(name)) {
+			entityWrapper.like("DOC_CODE", name);
 		}
 		return page.setRecords(mapper.selectPage(page,entityWrapper ));
 	}

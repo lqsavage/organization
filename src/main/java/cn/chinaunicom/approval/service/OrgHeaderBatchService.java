@@ -18,7 +18,7 @@ import cn.chinaunicom.platform.service.IHrService;
  */
 public interface OrgHeaderBatchService extends IHrService<OrgHeaderBatch> {
 
-	public Page<OrgHeaderBatch> getOrgHeaderBatchList(String batchCode,Integer pageNumber, Integer pageSize);
+	public Page<OrgHeaderBatch> getOrgHeaderBatchList(String name,Integer pageNumber, Integer pageSize);
 	
 	public Integer saveOrgHeaderBatch(OrgHeaderBatch entity);
 	
