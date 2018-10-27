@@ -1,8 +1,8 @@
-package cn.chinaunicom.organization.entity;
+package cn.chinaunicom.utils.entity;
 
 import java.util.List;
 
-public class OrgTree {
+public class TreeData {
 
 	private String value;
 	
@@ -12,10 +12,20 @@ public class OrgTree {
 	
 	private String key;
 	
-	private List<OrgTree> children;
+	private String id;
+	
+	private List<TreeData> children;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getValue() {
-		return value;
+		return title;
 	}
 
 	public void setValue(String value) {
@@ -39,18 +49,18 @@ public class OrgTree {
 	}
 
 	public String getKey() {
-		return key;
+		return id;
 	}
 
 	public void setKey(String key) {
 		this.key = key;
 	}
 
-	public List<OrgTree> getChildren() {
+	public List<TreeData> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<OrgTree> children) {
+	public void setChildren(List<TreeData> children) {
 		this.children = children;
 	}
 
