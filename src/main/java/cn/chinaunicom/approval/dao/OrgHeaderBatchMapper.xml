@@ -59,7 +59,7 @@
 		       (select count(1) from ehrcuc_org_header_doc d where d.batch_id = t.batch_header_id) as batCount
 		  from EHRCUC_ORG_HEADER_BATCH t Where 1=1 
 		<if test="batchCode != null and batchCode != ''">
-            AND t.doc_code = #{ batchCode }
+            AND t.doc_code like concat(concat('%',#{batchCode}),'%')
         </if>
 		<if test="workFlowStatus != null and workFlowStatus != ''">
             AND t.doc_status = #{ workFlowStatus }
