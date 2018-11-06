@@ -15,15 +15,17 @@ import cn.chinaunicom.utils.entity.TreeData;
  */
 public interface TreeDataMapper extends HrBaseMapper<TreeData> {
 
-	public List<TreeData> getChildrenData(Map<String,Object> params);
-	
-	public TreeData getData(Map<String,Object> params);
-	
-	public void createTable(@Param("tableName")String tableName);
-	
-	public void dropTable(@Param("tableName")String tableName);
-	
-	public void insertTempData(Map<String,Object> tempMap);
-	
-	public List<TreeData> getChildrenDataByTempTB(Map<String,Object> params);
+	public List<TreeData> getChildrenData(Map<String, Object> params);
+
+	public TreeData getData(Map<String, Object> params);
+
+	public void createTable(@Param("tableName") String tableName);
+
+	public void dropTable(@Param("tableName") String tableName);
+
+	public void insertTempData(Map<String, Object> tempMap);
+
+	public List<TreeData> getChildrenDataByTempTB(Map<String, Object> params);//add by lizhenhao
+
+	public List<TreeData> getParentByTempTB(Map<String, Object> params);//add by lizhenhao
 }
