@@ -31,10 +31,7 @@
 			${pidCode} AS pid        
 		FROM
 			${tableName}
-		where ${pidCode} in ${tempTable}
-       	<if test="wherePart != null and wherePart != ''">
-            AND #{ wherePart }
-        </if>
+		where ${idCode} in ${tempTable} and ${templete}
 	</select>
 
 	<select id="getChildrenData" resultType="cn.chinaunicom.utils.entity.TreeData">
@@ -65,6 +62,15 @@
        	<if test="wherePart != null and wherePart != ''">
             AND #{ wherePart }
         </if>
+	</select>
+	
+	<select id="getParentByTempTB" resultType="cn.chinaunicom.utils.entity.TreeData">
+		SELECT
+			${idCode} AS id,
+			${nameCode} AS title,
+			${pidCode} AS pid        
+		FROM
+			${templete}
 	</select>
 	
 </mapper>
