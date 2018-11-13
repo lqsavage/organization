@@ -81,6 +81,16 @@ dependencies {
 	testCompile("it.ozimov:embedded-redis:${embeddedRedisVersion}")
 }
 
+
+sourceSets {
+    main {
+        resources {
+            //这里的srcDir是方法，上面的是属性
+            srcDir(['src/main/java', 'src/main/resources'])  //可以将java目录下的所有非.java资源打包到classes下
+        }
+    }
+}
+
 pmd {
 	consoleOutput = true
 	ignoreFailures = true
