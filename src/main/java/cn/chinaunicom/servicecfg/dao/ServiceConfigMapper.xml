@@ -19,7 +19,7 @@
 	    select 
 	    <include refid="Base_Column_List"/>
 	    from hr_server_config a
-	    where  1=1;
+	    where  a.module = #{module};
 	</select>
 
 </mapper>
