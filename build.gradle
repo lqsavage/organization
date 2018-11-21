@@ -68,7 +68,10 @@ dependencies {
 	compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
 
 	compile("com.amazonaws:aws-java-sdk-s3")
-	compile group:'cn.afterturn', name:'easypoi-spring-boot-starter', version:'3.2.0'
+	compile 'org.apache.poi:poi-scratchpad:3.7'
+	compile 'org.apache.poi:poi-examples:3.7'
+
+
 
 	runtime('mysql:mysql-connector-java')
 
