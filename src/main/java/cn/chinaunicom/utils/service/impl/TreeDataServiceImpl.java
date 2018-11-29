@@ -75,7 +75,8 @@ public class TreeDataServiceImpl extends HrServiceImpl<TreeDataMapper, TreeData>
 			tempMap.put("ids", keyList);
 			mapper.insertTempData(tempMap);
 			params.put("tempTable", "(SELECT ID FROM TEMP_TB)");
-			List<TreeData> newList = mapper.getChildrenDataByTempTB(params);
+			params.put("wherePart", " 1=1 ");
+			List<TreeData> newList = mapper.getChildrenDataByPIDTempTB(params);
 			mapper.dropTable("temp_tb");
 			if (newList.size() > 0)
 			{
