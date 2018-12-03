@@ -75,4 +75,14 @@ public class OrgHeaderBatchServiceImpl extends HrServiceImpl<OrgHeaderBatchMappe
 	public List<Map<String, Object>> getAttachmentListByHeadId(Long id) {
 		return mapper.getAttachmentListByHeadId(id);
 	}
+	
+	@Override
+	public Page<Map<String, Object>> selectAllListByEmNum(String name, String operatorId,
+			Integer xBusinessGroupId, Integer pageNumber, Integer pageSize) {
+        Page<Map<String, Object>> page = new Page<Map<String, Object>>(pageNumber, pageSize);
+        Map params = new HashMap();
+        params.put("name", name);
+        params.put("operatorId", operatorId);
+		return page.setRecords(this.mapper.searchAllBaInfoByEmNum(page,params));
+	}
 }

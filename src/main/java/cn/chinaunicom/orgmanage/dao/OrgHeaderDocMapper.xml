@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinaunicom.orgmanage.dao.OrgHeaderDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.orgmanage.entity.OrgHeaderDoc">
+        <id column="DOC_HEADER_ID" property="docHeaderId" />
+        <result column="WORKFLOW_INSTANCE_ID" property="workflowInstanceId" />
+        <result column="DOC_CODE" property="docCode" />
+        <result column="DOC_VERIFIER" property="docVerifier" />
+        <result column="DOC_DATE" property="docDate" />
+        <result column="DOC_STATUS" property="docStatus" />
+        <result column="DOC_SUBJECT" property="docSubject" />
+        <result column="DOC_DESCRIPTION" property="docDescription" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+        <result column="ROOTID" property="rootid" />
+        <result column="ISAPPROVE" property="isapprove" />
+        <result column="SKIPFLAG" property="skipflag" />
+        <result column="BUSINESS_GROUP_ID" property="businessGroupId" />
+        <result column="BATCH_ID" property="batchId" />
+        <result column="NOTICE_ID" property="noticeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOC_HEADER_ID, WORKFLOW_INSTANCE_ID, DOC_CODE, DOC_VERIFIER, DOC_DATE, DOC_STATUS, DOC_SUBJECT, DOC_DESCRIPTION, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, ATTRIBUTE1, ATTRIBUTE3, ATTRIBUTE2, ATTRIBUTE4, ATTRIBUTE5, ATTRIBUTE6, ATTRIBUTE7, ATTRIBUTE8, ATTRIBUTE9, ATTRIBUTE10, ROOTID, ISAPPROVE, SKIPFLAG, BUSINESS_GROUP_ID, BATCH_ID, NOTICE_ID
+    </sql>
+    
+    <select id="searchOrgCreateInfo" resultType="java.util.HashMap">
+		select  d.doc_header_id as docHeaderId,
+                d.workflow_instance_id as workFLowInstancId,
+                d.doc_code as docCode,
+                d.doc_verifier as docVerifier,
+                DATE_FORMAT(d.doc_date,'%Y-%m-%d') as docDate,
+                d.doc_status as attribute1,
+                d.doc_subject as docSubject,
+                d.doc_description as docDescription,
+                if(d.rootid=null, 0, d.rootid) as rootId,
+                d.doc_status as docStatus,
+                d.isapprove as isApprove,
+                d.attribute10 as attribute10,
+                d.batch_id as batchId
+		  from ehrcuc_org_header_doc d where 1=1
+		<if test="docCode != null and docCode != ''">
+            AND d.doc_code like concat(concat('%',#{docCode}),'%')
+        </if>
+		<if test="docStatus != null and docStatus != ''">
+            AND d.doc_status = #{ docStatus }
+        </if>
+		<if test="docVerifier != null and docVerifier != ''">
+            AND d.doc_verifier like concat(concat('%',#{docVerifier}),'%')
+        </if>
+        <if test="docDateS != null and docDateS != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &gt;= date_format(#{docDateS},'%Y-%m-%d')
+        </if>
+		<if test="docDateE != null and docDateE != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &lt;= date_format(#{docDateE},'%Y-%m-%d')
+        </if>
+		<if test="operatorId != null and operatorId != ''">
+            AND d.create_by = #{operatorId}
+		</if> 
+		<if test="isApprove != null and isApprove != ''">
+            AND d.isapprove = #{isApprove}
+		</if>
+		and d.attribute9='ADD'
+		order by d.update_date desc
+	</select>
+	
+	<select id="searchOrgMergeInfo" resultType="java.util.HashMap">
+		select  d.doc_header_id as docHeaderId,
+                d.workflow_instance_id as workFLowInstancId,
+                d.doc_code as docCode,
+                d.doc_verifier as docVerifier,
+                DATE_FORMAT(d.doc_date,'%Y-%m-%d') as docDate,
+                d.doc_status as attribute1,
+                d.doc_subject as docSubject,
+                d.doc_description as docDescription,
+                if(d.rootid=null, 0, d.rootid) as rootId,
+                d.doc_status as docStatus,
+                d.isapprove as isApprove,
+                d.attribute10 as attribute10,
+                d.batch_id as batchId
+		  from ehrcuc_org_header_doc d where 1=1
+		<if test="docCode != null and docCode != ''">
+            AND d.doc_code like concat(concat('%',#{docCode}),'%')
+        </if>
+		<if test="docStatus != null and docStatus != ''">
+            AND d.doc_status = #{ docStatus }
+        </if>
+		<if test="docVerifier != null and docVerifier != ''">
+            AND d.doc_verifier like concat(concat('%',#{docVerifier}),'%')
+        </if>
+        <if test="docDateS != null and docDateS != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &gt;= date_format(#{docDateS},'%Y-%m-%d')
+        </if>
+		<if test="docDateE != null and docDateE != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &lt;= date_format(#{docDateE},'%Y-%m-%d')
+        </if>
+		<if test="operatorId != null and operatorId != ''">
+            AND d.create_by = #{operatorId}
+		</if> 
+		<if test="isApprove != null and isApprove != ''">
+            AND d.isapprove = #{isApprove}
+		</if>
+		and exists (select 1 from EHRCUC_ORG_DISABLED where DIS_TYPE_CODE = 'H' and d.DOC_HEADER_ID=DOC_HEADER_ID)
+		order by d.update_date desc
+	</select>
+	
+	<select id="searchOrgRenameInfo" resultType="java.util.HashMap">
+		select  d.doc_header_id as docHeaderId,
+                d.workflow_instance_id as workFLowInstancId,
+                d.doc_code as docCode,
+                d.doc_verifier as docVerifier,
+                DATE_FORMAT(d.doc_date,'%Y-%m-%d') as docDate,
+                d.doc_status as attribute1,
+                d.doc_subject as docSubject,
+                d.doc_description as docDescription,
+                if(d.rootid=null, 0, d.rootid) as rootId,
+                d.doc_status as docStatus,
+                d.isapprove as isApprove,
+                d.attribute10 as attribute10,
+                d.batch_id as batchId
+		  from ehrcuc_org_header_doc d where 1=1
+		<if test="docCode != null and docCode != ''">
+            AND d.doc_code like concat(concat('%',#{docCode}),'%')
+        </if>
+		<if test="docStatus != null and docStatus != ''">
+            AND d.doc_status = #{ docStatus }
+        </if>
+		<if test="docVerifier != null and docVerifier != ''">
+            AND d.doc_verifier like concat(concat('%',#{docVerifier}),'%')
+        </if>
+        <if test="docDateS != null and docDateS != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &gt;= date_format(#{docDateS},'%Y-%m-%d')
+        </if>
+		<if test="docDateE != null and docDateE != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &lt;= date_format(#{docDateE},'%Y-%m-%d')
+        </if>
+		<if test="operatorId != null and operatorId != ''">
+            AND d.create_by = #{operatorId}
+		</if> 
+		<if test="isApprove != null and isApprove != ''">
+            AND d.isapprove = #{isApprove}
+		</if>
+		and exists (select 1 from EHRCUC_ORG_DISABLED where DIS_TYPE_CODE = 'U' and d.DOC_HEADER_ID=DOC_HEADER_ID)
+		order by d.update_date desc
+	</select>
+	
+	<select id="searchOrgDeleteInfo" resultType="java.util.HashMap">
+		select  d.doc_header_id as docHeaderId,
+                d.workflow_instance_id as workFLowInstancId,
+                d.doc_code as docCode,
+                d.doc_verifier as docVerifier,
+                DATE_FORMAT(d.doc_date,'%Y-%m-%d') as docDate,
+                d.doc_status as attribute1,
+                d.doc_subject as docSubject,
+                d.doc_description as docDescription,
+                if(d.rootid=null, 0, d.rootid) as rootId,
+                d.doc_status as docStatus,
+                d.isapprove as isApprove,
+                d.attribute10 as attribute10,
+                d.batch_id as batchId
+		  from ehrcuc_org_header_doc d where 1=1
+		<if test="docCode != null and docCode != ''">
+            AND d.doc_code like concat(concat('%',#{docCode}),'%')
+        </if>
+		<if test="docStatus != null and docStatus != ''">
+            AND d.doc_status = #{ docStatus }
+        </if>
+		<if test="docVerifier != null and docVerifier != ''">
+            AND d.doc_verifier like concat(concat('%',#{docVerifier}),'%')
+        </if>
+        <if test="docDateS != null and docDateS != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &gt;= date_format(#{docDateS},'%Y-%m-%d')
+        </if>
+		<if test="docDateE != null and docDateE != ''">
+            AND date_format(d.doc_date,'%Y-%m-%d') &lt;= date_format(#{docDateE},'%Y-%m-%d')
+        </if>
+		<if test="operatorId != null and operatorId != ''">
+            AND d.create_by = #{operatorId}
+		</if> 
+		<if test="isApprove != null and isApprove != ''">
+            AND d.isapprove = #{isApprove}
+		</if>
+		and exists (select 1 from EHRCUC_ORG_DISABLED where DIS_TYPE_CODE = 'D' and d.DOC_HEADER_ID=DOC_HEADER_ID)
+		order by d.update_date desc
+	</select>
+
+</mapper>

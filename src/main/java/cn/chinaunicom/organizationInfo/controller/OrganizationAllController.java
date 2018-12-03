@@ -180,8 +180,62 @@ public class OrganizationAllController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
+	/**
+	 * 描述: （获取组织下级节点）
+	 * 
+	 * @param
+	 * @param
+	 * @return ResponseEntity<Object>
+	 */
+	@ApiOperation(value = "获取组织下级节点", notes = "获取组织下级节点", response = TreeData.class, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+    })
+    @ApiResponses({
+            @ApiResponse(
+                    code = 200,
+                    message = "获取数据成功",
+                    response = List.class
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "未查询到数据"
+            )
+    })
+	@GetMapping("/getSubTreeByPid")
+	public ResponseEntity<Object> getSubTreeByPid(String topId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		ArrayList<String> idList = new ArrayList<String>();
+		idList.add(topId);
+		params.put("ids",idList);
+		params.put("tableName", "EHRBASE_ORGANIZATION_ALL");
+		params.put("idCode", "ORGANIZATION_ID");
+		params.put("pidCode", "ORGANIZATION_ID_PARENT");
+		params.put("nameCode", "NAME");
+		params.put("wherePart", " DATE_FORMAT(sysdate(), '%Y-%m-%d') between DATE_FORMAT(IFNULL(DATE_FROM, sysdate()), '%Y-%m-%d') and DATE_FORMAT(IFNULL(DATE_TO, sysdate()), '%Y-%m-%d') ");
+		List<TreeData> tempTB = service.getChildrenData(params);
+		return new ResponseEntity<>(tempTB, HttpStatus.OK);
+	}
 	
-	
+	@GetMapping("/getInitTree")
+	public ResponseEntity<Object> getInitTree(String login_name,String resp_id) {
+		String topId = "101";
+		TreeData topTree = getTopTree(topId);
+		Map<String, Object> params = new HashMap<String, Object>();
+		ArrayList<String> idList = new ArrayList<String>();
+		idList.add(topId);
+		params.put("ids",idList);
+		params.put("tableName", "EHRBASE_ORGANIZATION_ALL");
+		params.put("idCode", "ORGANIZATION_ID");
+		params.put("pidCode", "ORGANIZATION_ID_PARENT");
+		params.put("nameCode", "NAME");
+		params.put("wherePart", " 1=1");
+		List<TreeData> tempTB = service.getChildrenData(params);
+		topTree.setChildren(tempTB);
+		List<TreeData> result = new ArrayList<TreeData>();
+		result.add(topTree);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 	
 	/**
 	 * 描述: （组织结构图查询当前节点下所有子节点）

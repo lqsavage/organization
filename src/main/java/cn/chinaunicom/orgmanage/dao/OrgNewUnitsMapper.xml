@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinaunicom.orgmanage.dao.OrgNewUnitsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.orgmanage.entity.OrgNewUnits">
+        <id column="T_ORG_ID" property="tOrgId" />
+        <result column="R_CHANGE_ID" property="rChangeId" />
+        <result column="DOC_HEADER_ID" property="docHeaderId" />
+        <result column="PARENT_ORG_ID" property="parentOrgId" />
+        <result column="NEW_TYPE_CODE" property="newTypeCode" />
+        <result column="ORG_NAME" property="orgName" />
+        <result column="ORG_TYPE" property="orgType" />
+        <result column="DATE_FROM" property="dateFrom" />
+        <result column="DATE_TO" property="dateTo" />
+        <result column="INTERNAL_EXTERNAL_FLAG" property="internalExternalFlag" />
+        <result column="HR_ORG" property="hrOrg" />
+        <result column="GRE_ORG" property="greOrg" />
+        <result column="GRE_COMPANY_NAME" property="greCompanyName" />
+        <result column="GRE_ORG_NUMBER" property="greOrgNumber" />
+        <result column="EMPLOYER_COMPANY_ORG" property="employerCompanyOrg" />
+        <result column="EMPLOYER_DEDUCTION_Y" property="employerDeductionY" />
+        <result column="EMPLOYER_DEDUCTION_S" property="employerDeductionS" />
+        <result column="LOCATION_ID" property="locationId" />
+        <result column="SUBSIDIARY" property="subsidiary" />
+        <result column="APPEAR_MARKET" property="appearMarket" />
+        <result column="ORG_HIERARCHY" property="orgHierarchy" />
+        <result column="VIRTUAL_ORG" property="virtualOrg" />
+        <result column="SUBORDINATE_PROVINCES" property="subordinateProvinces" />
+        <result column="ORG_ORDER_NUMBER" property="orgOrderNumber" />
+        <result column="ORG_COMPANY_NAME" property="orgCompanyName" />
+        <result column="ORG_REPEAL_DATE" property="orgRepealDate" />
+        <result column="ORG_FULL_NAME" property="orgFullName" />
+        <result column="ORG_FULL_NUMBER" property="orgFullNumber" />
+        <result column="SUBORDINATE_PROVINCE" property="subordinateProvince" />
+        <result column="FUNCTION_PROVINCE" property="functionProvince" />
+        <result column="SUPERIORS_ORG" property="superiorsOrg" />
+        <result column="REMARK1" property="remark1" />
+        <result column="REMARK2" property="remark2" />
+        <result column="REMARK3" property="remark3" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+        <result column="SYNCHRO" property="synchro" />
+        <result column="ERROR_MESSAGE" property="errorMessage" />
+        <result column="NEW_ORG_ID" property="newOrgId" />
+        <result column="NEW_PARENT_ORG_ID" property="newParentOrgId" />
+        <result column="STANDARDORG" property="standardorg" />
+        <result column="MIN_UNIT" property="minUnit" />
+        <result column="CUC_ORI_ORG_ID" property="cucOriOrgId" />
+        <result column="BUSINESS_GROUP_ID" property="businessGroupId" />
+        <result column="CUG_ORG_LOB" property="cugOrgLob" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        T_ORG_ID, R_CHANGE_ID, DOC_HEADER_ID, PARENT_ORG_ID, NEW_TYPE_CODE, ORG_NAME, ORG_TYPE, DATE_FROM, DATE_TO, INTERNAL_EXTERNAL_FLAG, HR_ORG, GRE_ORG, GRE_COMPANY_NAME, GRE_ORG_NUMBER, EMPLOYER_COMPANY_ORG, EMPLOYER_DEDUCTION_Y, EMPLOYER_DEDUCTION_S, LOCATION_ID, SUBSIDIARY, APPEAR_MARKET, ORG_HIERARCHY, VIRTUAL_ORG, SUBORDINATE_PROVINCES, ORG_ORDER_NUMBER, ORG_COMPANY_NAME, ORG_REPEAL_DATE, ORG_FULL_NAME, ORG_FULL_NUMBER, SUBORDINATE_PROVINCE, FUNCTION_PROVINCE, SUPERIORS_ORG, REMARK1, REMARK2, REMARK3, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, ATTRIBUTE1, ATTRIBUTE3, ATTRIBUTE2, ATTRIBUTE4, ATTRIBUTE5, ATTRIBUTE6, ATTRIBUTE7, ATTRIBUTE8, ATTRIBUTE9, ATTRIBUTE10, SYNCHRO, ERROR_MESSAGE, NEW_ORG_ID, NEW_PARENT_ORG_ID, STANDARDORG, MIN_UNIT, CUC_ORI_ORG_ID, BUSINESS_GROUP_ID, CUG_ORG_LOB
+    </sql>
+
+	<select id="checkNameIsRepeat" resultType="java.lang.Integer">
+		select count(1)
+		  from (select n.org_name
+		          from ehrcuc_org_new_units n,ehrcuc_org_header_doc doc
+		         where doc.doc_header_id = n.doc_header_id
+		         and doc.doc_status != 'S'
+		         and doc.doc_status != 'O'
+		         and doc.doc_status != 'C'
+		         and n.org_name = #{newOrgName}
+		         and n.business_group_id = #{businessGroupId}
+		        union all
+		        select n.org_name
+		               from ehrcuc_org_new_units n
+		               where n.doc_header_id = #{docHeaderId}
+		               and n.org_name = #{newOrgName}
+		               and n.business_group_id = #businessGroupId#
+		               <if test="tOrgId != null and tOrgId != ''">
+				            AND n.t_org_id != #{tOrgId}
+				        </if>
+		        union all
+		        select o.name
+		          from ehrbase_organization_all o
+		         where o.name = #{newOrgName}
+		         and o.business_group_id = #{businessGroupId}
+		           )
+	</select>
+</mapper>
