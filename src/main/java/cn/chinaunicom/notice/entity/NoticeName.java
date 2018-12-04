@@ -1,6 +1,5 @@
 package cn.chinaunicom.notice.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -29,7 +28,7 @@ public class NoticeName extends Model<NoticeName> {
      */
      @ApiModelProperty(value="主键")
     @TableId("NOTICE_NAME_ID")
-    private BigDecimal noticeNameId;
+    private Long noticeNameId;
     /**
      * 办理人员id
      */
@@ -73,13 +72,13 @@ public class NoticeName extends Model<NoticeName> {
      */
      @ApiModelProperty(value="修改人")
     @TableField("LAST_UPDATED_BY")
-    private BigDecimal lastUpdatedBy;
+    private Long lastUpdatedBy;
     /**
      * 创建人
      */
      @ApiModelProperty(value="创建人")
     @TableField("CREATED_BY")
-    private BigDecimal createdBy;
+    private Long createdBy;
     /**
      * 创建时间
      */
@@ -91,13 +90,13 @@ public class NoticeName extends Model<NoticeName> {
      */
      @ApiModelProperty(value="组织id")
     @TableField("CTRL_ORG_ID")
-    private BigDecimal ctrlOrgId;
+    private Long ctrlOrgId;
     /**
      * 职责id
      */
      @ApiModelProperty(value="职责id")
     @TableField("RESP_ID")
-    private BigDecimal respId;
+    private Long respId;
     /**
      * 删除（1删除）
      */
@@ -106,11 +105,11 @@ public class NoticeName extends Model<NoticeName> {
     private String deleteFlag;
 
 
-    public BigDecimal getNoticeNameId() {
+    public Long getNoticeNameId() {
         return noticeNameId;
     }
 
-    public void setNoticeNameId(BigDecimal noticeNameId) {
+    public void setNoticeNameId(Long noticeNameId) {
         this.noticeNameId = noticeNameId;
     }
 
@@ -218,19 +217,19 @@ public class NoticeName extends Model<NoticeName> {
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    public BigDecimal getLastUpdatedBy() {
+    public Long getLastUpdatedBy() {
         return lastUpdatedBy;
     }
 
-    public void setLastUpdatedBy(BigDecimal lastUpdatedBy) {
+    public void setLastUpdatedBy(Long lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    public BigDecimal getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(BigDecimal createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -242,19 +241,19 @@ public class NoticeName extends Model<NoticeName> {
         this.creationDate = creationDate;
     }
 
-    public BigDecimal getCtrlOrgId() {
+    public Long getCtrlOrgId() {
         return ctrlOrgId;
     }
 
-    public void setCtrlOrgId(BigDecimal ctrlOrgId) {
+    public void setCtrlOrgId(Long ctrlOrgId) {
         this.ctrlOrgId = ctrlOrgId;
     }
 
-    public BigDecimal getRespId() {
+    public Long getRespId() {
         return respId;
     }
 
-    public void setRespId(BigDecimal respId) {
+    public void setRespId(Long respId) {
         this.respId = respId;
     }
 
