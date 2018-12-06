@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinaunicom.orgInfo.dao.OrganizationInformationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.orgInfo.entity.OrganizationInformation">
+        <result column="ORG_INFORMATION_ID" property="orgInformationId" />
+        <result column="ORG_INFORMATION_CONTEXT" property="orgInformationContext" />
+        <result column="ORGANIZATION_ID" property="organizationId" />
+        <result column="ORG_INFORMATION1" property="orgInformation1" />
+        <result column="ORG_INFORMATION10" property="orgInformation10" />
+        <result column="ORG_INFORMATION11" property="orgInformation11" />
+        <result column="ORG_INFORMATION12" property="orgInformation12" />
+        <result column="ORG_INFORMATION13" property="orgInformation13" />
+        <result column="ORG_INFORMATION14" property="orgInformation14" />
+        <result column="ORG_INFORMATION15" property="orgInformation15" />
+        <result column="ORG_INFORMATION16" property="orgInformation16" />
+        <result column="ORG_INFORMATION17" property="orgInformation17" />
+        <result column="ORG_INFORMATION18" property="orgInformation18" />
+        <result column="ORG_INFORMATION19" property="orgInformation19" />
+        <result column="ORG_INFORMATION2" property="orgInformation2" />
+        <result column="ORG_INFORMATION20" property="orgInformation20" />
+        <result column="ORG_INFORMATION3" property="orgInformation3" />
+        <result column="ORG_INFORMATION4" property="orgInformation4" />
+        <result column="ORG_INFORMATION5" property="orgInformation5" />
+        <result column="ORG_INFORMATION6" property="orgInformation6" />
+        <result column="ORG_INFORMATION7" property="orgInformation7" />
+        <result column="ORG_INFORMATION8" property="orgInformation8" />
+        <result column="ORG_INFORMATION9" property="orgInformation9" />
+        <result column="REQUEST_ID" property="requestId" />
+        <result column="PROGRAM_APPLICATION_ID" property="programApplicationId" />
+        <result column="PROGRAM_ID" property="programId" />
+        <result column="PROGRAM_UPDATE_DATE" property="programUpdateDate" />
+        <result column="ATTRIBUTE_CATEGORY" property="attributeCategory" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+        <result column="ATTRIBUTE11" property="attribute11" />
+        <result column="ATTRIBUTE12" property="attribute12" />
+        <result column="ATTRIBUTE13" property="attribute13" />
+        <result column="ATTRIBUTE14" property="attribute14" />
+        <result column="ATTRIBUTE15" property="attribute15" />
+        <result column="ATTRIBUTE16" property="attribute16" />
+        <result column="ATTRIBUTE17" property="attribute17" />
+        <result column="ATTRIBUTE18" property="attribute18" />
+        <result column="ATTRIBUTE19" property="attribute19" />
+        <result column="ATTRIBUTE20" property="attribute20" />
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" />
+        <result column="LAST_UPDATED_BY" property="lastUpdatedBy" />
+        <result column="LAST_UPDATE_LOGIN" property="lastUpdateLogin" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="CREATION_DATE" property="creationDate" />
+        <result column="OBJECT_VERSION_NUMBER" property="objectVersionNumber" />
+        <result column="PARTY_ID" property="partyId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ORG_INFORMATION_ID, ORG_INFORMATION_CONTEXT, ORGANIZATION_ID, ORG_INFORMATION1, ORG_INFORMATION10, ORG_INFORMATION11, ORG_INFORMATION12, ORG_INFORMATION13, ORG_INFORMATION14, ORG_INFORMATION15, ORG_INFORMATION16, ORG_INFORMATION17, ORG_INFORMATION18, ORG_INFORMATION19, ORG_INFORMATION2, ORG_INFORMATION20, ORG_INFORMATION3, ORG_INFORMATION4, ORG_INFORMATION5, ORG_INFORMATION6, ORG_INFORMATION7, ORG_INFORMATION8, ORG_INFORMATION9, REQUEST_ID, PROGRAM_APPLICATION_ID, PROGRAM_ID, PROGRAM_UPDATE_DATE, ATTRIBUTE_CATEGORY, ATTRIBUTE1, ATTRIBUTE2, ATTRIBUTE3, ATTRIBUTE4, ATTRIBUTE5, ATTRIBUTE6, ATTRIBUTE7, ATTRIBUTE8, ATTRIBUTE9, ATTRIBUTE10, ATTRIBUTE11, ATTRIBUTE12, ATTRIBUTE13, ATTRIBUTE14, ATTRIBUTE15, ATTRIBUTE16, ATTRIBUTE17, ATTRIBUTE18, ATTRIBUTE19, ATTRIBUTE20, LAST_UPDATE_DATE, LAST_UPDATED_BY, LAST_UPDATE_LOGIN, CREATED_BY, CREATION_DATE, OBJECT_VERSION_NUMBER, PARTY_ID
+    </sql>
+    
+    <select id="getOrgBasicInfoByOrgId" resultType="cn.chinaunicom.orgInfo.entity.OrgDetailInfo">
+    	SELECT
+	POU.NAME ORGNAME,
+	POU.TYPE,
+	( SELECT a.meaning FROM hades_lookups a WHERE a.lookup_type = 'ORG_TYPE' AND a.lookup_code = POU.TYPE ) ORGTYPE,
+	CAST( DATE_FORMAT( POU.DATE_FROM, '%Y-%m-%d' ) AS CHAR ) DATEFROM,
+	CAST( DATE_FORMAT( POU.DATE_TO, '%Y-%m-%d' ) AS CHAR ) DATETO,
+	( SELECT HOI1.ORG_INFORMATION2 FROM EHR_TO_EBS.HR_ORGANIZATION_INFORMATION HOI1 WHERE HOI1.ORG_INFORMATION1 = 'HR_ORG' AND HOI1.ORGANIZATION_ID = POU.ORGANIZATION_ID ) ORGTYPICALHR,
+	( SELECT HOI2.ORG_INFORMATION2 FROM EHR_TO_EBS.HR_ORGANIZATION_INFORMATION HOI2 WHERE HOI2.ORG_INFORMATION1 = 'HR_LEGAL' AND HOI2.ORGANIZATION_ID = POU.ORGANIZATION_ID ) ORGTYPICALGRE,
+	PCAK.SEGMENT1 ORGPERIODCODE,
+	(
+SELECT
+	V.DESCRIPTION
+FROM
+	EHR_TO_EBS.APPS.FND_FLEX_VALUE_SETS S,
+	EHR_TO_EBS.APPS.FND_FLEX_VALUES_VL V
+WHERE
+	S.FLEX_VALUE_SET_NAME = 'CNC_COA_CO'
+	AND S.FLEX_VALUE_SET_ID = V.FLEX_VALUE_SET_ID
+	AND V.FLEX_VALUE = PCAK.SEGMENT1
+	) ORGPERIODSHOW,
+	PCAK.SEGMENT2 COSTCENTERCODE,
+	(
+SELECT
+	FFVL.DESCRIPTION
+FROM
+	EHR_TO_EBS.APPS.FND_FLEX_VALUES_VL FFVL,
+	EHR_TO_EBS.APPS.FND_FLEX_VALUE_SETS FFVS,
+	EHR_TO_EBS.FND_LOOKUP_VALUES FLV
+WHERE
+	FLV.LOOKUP_TYPE = 'UNICOM_PROVINCE_VALUESET_LIST'
+	AND FLV.LANGUAGE = 'ZHS'
+	AND FLV.DESCRIPTION = FFVS.FLEX_VALUE_SET_NAME
+	AND FFVS.FLEX_VALUE_SET_ID = FFVL.FLEX_VALUE_SET_ID
+	AND FLV.MEANING = SUBSTR( PCAK.SEGMENT1, 1, 4 )
+	AND FFVL.FLEX_VALUE = PCAK.SEGMENT2
+	) COSTCENTERSHOW,
+	PCAK.SEGMENT7 MAJORCODE,
+	(
+SELECT
+	V.DESCRIPTION
+FROM
+	EHR_TO_EBS.APPS.FND_FLEX_VALUE_SETS S,
+	EHR_TO_EBS.APPS.FND_FLEX_VALUES_VL V
+WHERE
+	S.FLEX_VALUE_SET_NAME = 'CNC_COA_SP'
+	AND S.FLEX_VALUE_SET_ID = V.FLEX_VALUE_SET_ID
+	AND V.FLEX_VALUE = PCAK.SEGMENT7
+	) MAJORSHOW,
+	 POU.ATTRIBUTE3,
+	( SELECT a.meaning FROM hades_lookups a WHERE a.lookup_type = 'CNC_BRANCH_NAME' AND a.lookup_code = POU.ATTRIBUTE3 ) ADDINFO,
+	POU.ATTRIBUTE12 ORGSORTNUMBER,
+	POU.ATTRIBUTE5,
+ (
+SELECT
+	V.DESCRIPTION
+FROM
+	EHR_TO_EBS.APPS.FND_FLEX_VALUE_SETS S,
+	EHR_TO_EBS.APPS.FND_FLEX_VALUES_VL V
+WHERE
+	S.FLEX_VALUE_SET_NAME = 'CNC_ORG_CATE'
+	AND S.FLEX_VALUE_SET_ID = V.FLEX_VALUE_SET_ID
+	AND V.FLEX_VALUE = POU.ATTRIBUTE5
+	) ORGLEVEL,
+	POU.ATTRIBUTE1 AREA,
+	POU.ATTRIBUTE9 VITUALORG,
+	POU.ATTRIBUTE10 OWENPRIVINCE,
+	POU.ATTRIBUTE2 ORGPROPRERTIES,
+	SUBSTR( POU.ATTRIBUTE4, 1, 10 ) ORGCANCLEDATE,
+	HOI1.ORG_INFORMATION5 ORGNIZATIONNAME,
+	HOI1.ORG_INFORMATION7 ORGCODE,
+	POU.INTERNAL_EXTERNAL_FLAG,
+IF
+	( POU.INTERNAL_EXTERNAL_FLAG = 'INT', '内部', '外部' ) INTERORTER,
+ (
+SELECT
+	FLV.MEANING
+FROM
+	EHR_TO_EBS.FND_LOOKUP_VALUES FLV
+WHERE
+	FLV.LOOKUP_TYPE = 'CUC_ORG_MIN'
+	AND FLV.LANGUAGE = 'ZHS'
+	AND FLV.LOOKUP_CODE = POU.ATTRIBUTE20
+	) CUCORGMIN,-
+	POU.ATTRIBUTE21 cugOrgLob,
+	(
+	) POU.ATTRIBUTE22 cucOriOrgId,
+CASE
+	WHEN POU.ATTRIBUTE22 IS NULL THEN
+	'' ELSE IFNULL(
+	( SELECT NAME FROM ehrbase_organization_all WHERE organization_id = POU.ATTRIBUTE22 ),
+	( SELECT NAME FROM EHR_TO_EBS.HR_ALL_ORGANIZATION_UNITS WHERE ORGANIZATION_ID = POU.ATTRIBUTE22 )
+	)
+	END AS cucOriOrgName,
+		POU.ATTRIBUTE23 cucNewOrgId,
+CASE
+
+		WHEN POU.ATTRIBUTE23 IS NULL THEN
+		'' ELSE IFNULL(
+			( SELECT NAME FROM ehrbase_organization_all WHERE organization_id = POU.ATTRIBUTE23 ),
+			( SELECT NAME FROM EHR_TO_EBS.HR_ALL_ORGANIZATION_UNITS WHERE ORGANIZATION_ID = POU.ATTRIBUTE23 )
+		)
+	END AS cucNewOrgName
+FROM
+	EHR_TO_EBS.APPS.HR_ALL_ORGANIZATION_UNITS POU
+	LEFT JOIN EHR_TO_EBS.PAY_COST_ALLOCATION_KEYFLEX PCAK ON POU.COST_ALLOCATION_KEYFLEX_ID = PCAK.COST_ALLOCATION_KEYFLEX_ID
+	LEFT JOIN EHR_TO_EBS.HR_ORGANIZATION_INFORMATION HOI1 ON POU.ORGANIZATION_ID = HOI1.ORGANIZATION_ID
+WHERE
+
+	AND HOI1.ORG_INFORMATION_CONTEXT = 'PER_CORPORATE_INFO_CN'
+AND POU.ORGANIZATION_ID = #{orgId}
+    
+    </select>
+
+    <select id="getOrgLocationInfoByOrgId" resultType="cn.chinaunicom.orgInfo.entity.OrgDetailInfo">
+    SELECT
+        LOC.LOCATION_CODE LOCATION,
+        LOC.ADDRESS_LINE_1 LOCATIONDETAILINFO,
+        LOC.TOWN_OR_CITY,
+        ( SELECT a.meaning FROM hades_lookups a WHERE a.lookup_type = 'CN_PROVINCE' AND a.lookup_code = LOC.TOWN_OR_CITY ) PRIVINCE,
+        LOC.COUNTRY,
+    IF
+        ( LOC.COUNTRY = 'CN', '中国', LOC.COUNTRY ) NATIONAL,
+        LOC.POSTAL_CODE POSTCODE
+    FROM
+        EHR_TO_EBS.HR_LOCATIONS_ALL LOC,
+        EHR_TO_EBS.HR_ALL_ORGANIZATION_UNITS HOU
+    WHERE
+        LOC.LOCATION_ID = HOU.LOCATION_ID
+	AND HOU.ORGANIZATION_ID = #{orgId}
+
+    </select>
+</mapper>
