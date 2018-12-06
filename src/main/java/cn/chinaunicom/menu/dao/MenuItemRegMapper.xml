@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.chinaunicom.menu.dao.MenuitemRegMapper">
+<mapper namespace="cn.chinaunicom.menu.dao.MenuItemRegMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="cn.chinaunicom.menu.entity.MenuitemReg">
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.menu.entity.MenuItemReg">
         <id column="id" property="id" />
         <result column="pid" property="pid" />
         <result column="iconUrl" property="iconUrl" />
@@ -31,6 +31,7 @@
     <select id="getMenuList"  resultMap="MenuResultMap">
 	    SELECT hr_menuitem_reg.id,hr_menuitem_reg.pid,hr_menuitem_reg.name AS menuName,hr_menuitem_reg.iconUrl,hr_func_register.url 
 		FROM hr_menuitem_reg LEFT JOIN hr_func_register ON hr_menuitem_reg.funcode=hr_func_register.code 
+		where hr_menuitem_reg.module=#{module} 
 		ORDER BY hr_menuitem_reg.code
 	</select>
 

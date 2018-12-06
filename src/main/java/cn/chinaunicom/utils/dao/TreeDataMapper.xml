@@ -46,7 +46,7 @@
               #{id}
         </foreach>
        	<if test="wherePart != null and wherePart != ''">
-            AND #{ wherePart }
+            AND ${ wherePart }
         </if>
 	</select>
 	
@@ -60,7 +60,7 @@
 		where 
         	${idCode} = #{id}
        	<if test="wherePart != null and wherePart != ''">
-            AND #{ wherePart }
+            AND ${ wherePart }
         </if>
 	</select>
 	
@@ -71,6 +71,16 @@
 			${pidCode} AS pid        
 		FROM
 			${templete}
+	</select>
+	
+	<select id="getChildrenDataByPIDTempTB" resultType="cn.chinaunicom.utils.entity.TreeData">
+		SELECT
+			${idCode} AS id,
+			${nameCode} AS title,
+			${pidCode} AS pid        
+		FROM
+			${tableName}
+		where ${pidCode} in ${tempTable} and ${wherePart}
 	</select>
 	
 </mapper>

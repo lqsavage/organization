@@ -63,7 +63,7 @@ node {
                     forceUpdate: true,
                     uris: [[uri: 'file:///share/docker/auth.tar.gz']],
                     env: [[name: "TZ", value: "Asia/Shanghai"],
-                          [name: "SPRING_PROFILES_ACTIVE", value: "stage"]],
+                          [name: "SPRING_PROFILES_ACTIVE", value: "test"]],
                     labels: [[name: 'HAPROXY_GROUP', value: 'unicom_ihr_test'],
                              [name: "HAPROXY_0_HTTP_BACKEND_PROXYPASS_PATH", value: "/${SUB_PROJECT_NAME}/"],
                              [name: "HAPROXY_0_VHOST", value: "10.0.210.93,10.0.210.94,10.0.210.95"],

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinaunicom.orgrelation.dao.OrgRelationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.orgrelation.entity.OrgRelation">
+        <id column="R_CHANGE_ID" property="rChangeId" />
+        <result column="DOC_HEADER_ID" property="docHeaderId" />
+        <result column="M_TYPE_CODE" property="mTypeCode" />
+        <result column="D_TYPE_CODE" property="dTypeCode" />
+        <result column="RELA_DESCRIPTION" property="relaDescription" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        R_CHANGE_ID, DOC_HEADER_ID, M_TYPE_CODE, D_TYPE_CODE, RELA_DESCRIPTION, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, ATTRIBUTE1, ATTRIBUTE3, ATTRIBUTE2, ATTRIBUTE4, ATTRIBUTE5, ATTRIBUTE6, ATTRIBUTE7, ATTRIBUTE8, ATTRIBUTE9, ATTRIBUTE10
+    </sql>
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinaunicom.notice.dao.NoticeNameMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.chinaunicom.notice.entity.NoticeName">
+        <id column="NOTICE_NAME_ID" property="noticeNameId" />
+        <result column="NOTICE_NAME" property="noticeName" />
+        <result column="BUSINESS_TYPE" property="businessType" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" />
+        <result column="LAST_UPDATED_BY" property="lastUpdatedBy" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="CREATION_DATE" property="creationDate" />
+        <result column="CTRL_ORG_ID" property="ctrlOrgId" />
+        <result column="RESP_ID" property="respId" />
+        <result column="DELETE_FLAG" property="deleteFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        NOTICE_NAME_ID, NOTICE_NAME, BUSINESS_TYPE, ATTRIBUTE1, ATTRIBUTE2, ATTRIBUTE3, ATTRIBUTE4, ATTRIBUTE5, ATTRIBUTE6, ATTRIBUTE7, ATTRIBUTE8, ATTRIBUTE9, ATTRIBUTE10, LAST_UPDATE_DATE, LAST_UPDATED_BY, CREATED_BY, CREATION_DATE, CTRL_ORG_ID, RESP_ID, DELETE_FLAG
+    </sql>
+
+	<select id="searchNoticeList" resultType="java.util.HashMap">
+		select t.notice_name_id as id, 
+			   t.notice_name as title
+		  from ehrbase_notice_name t
+		 where t.business_type = 1
+		   and (t.delete_flag is null or t.delete_flag = '')
+		   and t.created_by = #{ userId }
+		 order by t.notice_name 
+   </select>
+   
+</mapper>

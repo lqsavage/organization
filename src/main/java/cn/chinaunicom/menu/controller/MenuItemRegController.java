@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import cn.chinaunicom.menu.entity.MenuList;
-import cn.chinaunicom.menu.entity.MenuitemReg;
-import cn.chinaunicom.menu.service.MenuitemRegService;
+import cn.chinaunicom.menu.entity.MenuItemReg;
+import cn.chinaunicom.menu.service.MenuItemRegService;
 import cn.chinaunicom.platform.utils.MessageResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -37,13 +37,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "菜单注册", tags = "菜单注册")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/menuitemReg")
-public class MenuitemRegController {
+@RequestMapping("/api/menuItemReg")
+public class MenuItemRegController {
 
 	@Autowired
-	MenuitemRegService service;
+	MenuItemRegService service;
 	
-	@ApiOperation(value = "菜单注册列表", notes = "菜单注册列表", response = MenuitemReg.class, httpMethod = "GET")
+	@ApiOperation(value = "菜单注册列表", notes = "菜单注册列表", response = MenuItemReg.class, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
     })
@@ -60,9 +60,9 @@ public class MenuitemRegController {
     })
     @GetMapping("/list")
     public ResponseEntity<Object> getMenuitemRegList(){
-		List<MenuitemReg> list = service.getMenuitemRegList();
+		List<MenuItemReg> list = service.getMenuitemRegList();
         if(list==null) {
-            list = new ArrayList<MenuitemReg>();
+            list = new ArrayList<MenuItemReg>();
         }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
@@ -78,7 +78,7 @@ public class MenuitemRegController {
 	         )
 	})
 	@PostMapping("/save")
-	public ResponseEntity<Object> saveMenuitemReg(MenuitemReg entity){
+	public ResponseEntity<Object> saveMenuitemReg(MenuItemReg entity){
 		MessageResponse vo = new MessageResponse();
         Integer i = service.saveMenuitemReg(entity);
         if(i>0) {
@@ -104,7 +104,7 @@ public class MenuitemRegController {
                     message = "未查询到数据"
             )
     })
-    @GetMapping("/menulist")
+    @GetMapping("/menuList")
     public ResponseEntity<Object> getMenuList(){
 		List<MenuList> list = service.getMenuList();
         if(list==null) {

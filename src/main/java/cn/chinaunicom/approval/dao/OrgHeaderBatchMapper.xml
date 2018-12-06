@@ -84,6 +84,35 @@
 		order by t.doc_status,t.attribute9 DESC
 	</select>
 	
+	<select id="searchAllBaInfoByEmNum" resultType="java.util.HashMap">
+		select t.batch_header_id as BATCH_HEADER_ID,
+		       t.workflow_instance_id as WORKFLOW_INSTANCE_ID,
+		       t.doc_code as DOC_CODE,
+		       t.doc_verifier as DOC_VERIFIER,
+		       DATE_FORMAT( t.doc_date,'%Y-%m-%d')  as DOC_DATE,
+		       t.doc_status as DOC_STATUS,
+		       t.doc_subject as DOC_SUBJECT,
+		       t.document_id as DOCUMENT_ID,
+		       t.attribute10 as ATTRIBUTE10,
+		       t.attribute9 as ATTRIBUTE9,
+		       (select b.full_name
+		          from EHRBASE_EMP_BASIC b
+		         where b.person_id = t.attribute8) as ATTRIBUTE8,
+		       t.attribute7 as ATTRIBUTE7,
+		       t.attribute6 as ATTRIBUTE6,
+		       t.attribute5 as ATTRIBUTE5,
+		       t.attribute4 as ATTRIBUTE4,
+		       t.attribute8 as ATTRIBUTE88
+		  from EHRCUC_ORG_HEADER_BATCH t
+		 where 1 = 1
+		   and t.doc_status = '2'
+		 <if test="name != null and name != ''">
+			AND (t.doc_code like concat(concat('%',#{name}),'%') or
+			t.doc_verifier like concat(concat('%',#{name}),'%'))
+		 </if>  
+		 order by t.doc_date desc
+	</select>
+	
 	<select id="getAttachmentListByHeadId" resultType="java.util.HashMap">
 		select @r:=@r+1 as rownum,eoatt.att_id as attId,
 		       eoatt.att_name as attName,

@@ -54,7 +54,7 @@ dependencies {
 	}
 	compile('org.springframework.boot:spring-boot-starter-undertow')
 	compile('org.springframework.boot:spring-boot-starter-data-redis')
-	compile('org.flywaydb:flyway-core')
+	//compile('org.flywaydb:flyway-core')
 	compile("com.baomidou:mybatis-plus:${mybatisPlusVersion}")
 	compile("com.baomidou:mybatisplus-spring-boot-starter:${springMybatisPlusVersion}")
 	compile("org.apache.velocity:velocity-engine-core:${velocityVersion}")
@@ -68,7 +68,10 @@ dependencies {
 	compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
 
 	compile("com.amazonaws:aws-java-sdk-s3")
-	compile group:'cn.afterturn', name:'easypoi-spring-boot-starter', version:'3.2.0'
+	compile 'org.apache.poi:poi-scratchpad:3.7'
+	compile 'org.apache.poi:poi-examples:3.7'
+
+
 
 	runtime('mysql:mysql-connector-java')
 
@@ -79,6 +82,16 @@ dependencies {
 	testCompile("org.assertj:assertj-core:${assertJVersion}")
 	testCompile('com.h2database:h2')
 	testCompile("it.ozimov:embedded-redis:${embeddedRedisVersion}")
+}
+
+
+sourceSets {
+    main {
+        resources {
+            //这里的srcDir是方法，上面的是属性
+            srcDir(['src/main/java', 'src/main/resources'])  //可以将java目录下的所有非.java资源打包到classes下
+        }
+    }
 }
 
 pmd {

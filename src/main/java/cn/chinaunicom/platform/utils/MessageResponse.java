@@ -24,5 +24,15 @@ public class MessageResponse {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+    @ApiModelProperty(value = "接口返回id")
+    private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
 

@@ -39,4 +39,7 @@ public interface OrgHeaderBatchService extends IHrService<OrgHeaderBatch> {
 	
 	public List<Map<String, Object>> getAttachmentListByHeadId(Long id);
 	
+	public Page<Map<String, Object>> selectAllListByEmNum(String name, String operatorId,
+			Integer xBusinessGroupId, Integer pageNumber, Integer pageSize);
+	
 }

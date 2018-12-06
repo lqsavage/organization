@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @TableName("hr_menuitem_reg")
 @ApiModel("菜单注册")
-public class MenuitemReg extends Model<MenuitemReg> {
+public class MenuItemReg extends Model<MenuItemReg> {
 
     private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class MenuitemReg extends Model<MenuitemReg> {
       * 图标
       */
       @ApiModelProperty(value="图标")
-    private String iconUrl;
+    private String iconurl;
 
     public Long getPid() {
 		return pid;
@@ -63,11 +63,11 @@ public class MenuitemReg extends Model<MenuitemReg> {
 	}
 
 	public String getIconUrl() {
-		return iconUrl;
+		return iconurl;
 	}
 
 	public void setIconUrl(String iconUrl) {
-		this.iconUrl = iconUrl;
+		this.iconurl = iconUrl;
 	}
 
 	public Long getId() {

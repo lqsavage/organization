@@ -1,6 +1,5 @@
 package cn.chinaunicom.approval.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -79,11 +78,11 @@ public class OrgHeaderBatch extends Model<OrgHeaderBatch> {
     @TableField("DOCUMENT_ID")
     private String documentId;
     @TableField("CREATE_BY")
-    private BigDecimal createBy;
+    private Long createBy;
     @TableField("CREATE_DATE")
     private Date createDate;
     @TableField("UPDATE_BY")
-    private BigDecimal updateBy;
+    private Long updateBy;
     @TableField("UPDATE_DATE")
     private Date updateDate;
     @TableField("ATTRIBUTE1")
@@ -115,7 +114,7 @@ public class OrgHeaderBatch extends Model<OrgHeaderBatch> {
      */
      @ApiModelProperty(value="流程发起人的根节点组织id")
     @TableField("ROOTID")
-    private BigDecimal rootid;
+    private Long rootid;
     @TableField("RANG_ID")
     private String rangId;
 
@@ -192,11 +191,11 @@ public class OrgHeaderBatch extends Model<OrgHeaderBatch> {
         this.documentId = documentId;
     }
 
-    public BigDecimal getCreateBy() {
+    public Long getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(BigDecimal createBy) {
+    public void setCreateBy(Long createBy) {
         this.createBy = createBy;
     }
 
@@ -208,11 +207,11 @@ public class OrgHeaderBatch extends Model<OrgHeaderBatch> {
         this.createDate = createDate;
     }
 
-    public BigDecimal getUpdateBy() {
+    public Long getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(BigDecimal updateBy) {
+    public void setUpdateBy(Long updateBy) {
         this.updateBy = updateBy;
     }
 
@@ -304,11 +303,11 @@ public class OrgHeaderBatch extends Model<OrgHeaderBatch> {
         this.attribute10 = attribute10;
     }
 
-    public BigDecimal getRootid() {
+    public Long getRootid() {
         return rootid;
     }
 
-    public void setRootid(BigDecimal rootid) {
+    public void setRootid(Long rootid) {
         this.rootid = rootid;
     }
 

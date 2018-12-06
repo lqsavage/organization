@@ -26,6 +26,8 @@ public interface TreeDataMapper extends HrBaseMapper<TreeData> {
 	public void insertTempData(Map<String, Object> tempMap);
 
 	public List<TreeData> getChildrenDataByTempTB(Map<String, Object> params);//add by lizhenhao
+	
+	public List<TreeData> getChildrenDataByPIDTempTB(Map<String, Object> params);
 
 	public List<TreeData> getParentByTempTB(Map<String, Object> params);//add by lizhenhao
 }

@@ -230,5 +230,48 @@ public class OrgHeaderBatchController {
         }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    
+    /**
+      * 查询参照数据
+     *
+     * @param xBusinessGroupId
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
+    @ApiOperation(value = "获取变更依据参照", notes = "获取变更依据参照", response = Page.class, responseContainer = "List", httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-Business-Group-Id", value = "业务组ID", required = true, dataType = "String", paramType = "header", defaultValue = "101"),
+            @ApiImplicitParam(name = "name", value = "文件名称和文号", required = false, dataType = "String"),
+            @ApiImplicitParam(name = "pageNumber", value = "当前页数", required = true, dataType = "Int"),
+            @ApiImplicitParam(name = "pageSize", value = "页面条数", required = true, dataType = "Int", defaultValue = "10"),
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "获取变更依据数据成功", response = Page.class, responseContainer = "List"),
+            @ApiResponse(code = 404, message = "未获取到有效的变更依据", response = Page.class)
+    })
+	@GetMapping("/selectListByEmNum")
+    public ResponseEntity<Object> selectListByEmNum(@RequestParam(value = "name", required = false) String name,
+                                                @RequestParam(value = "operatorId",required = false) String operatorId,
+                                                @RequestParam("pageNumber") Integer pageNumber,
+                                                @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+    	String xBusinessGroupId = "101";
+        Page<Map<String, Object>> policyRulePage = service.selectAllListByEmNum(
+        		name,
+        		operatorId,
+                Integer.valueOf(xBusinessGroupId),
+                pageNumber,
+                pageSize);
+
+        MessageResponse dto = new MessageResponse();
+        if (null != policyRulePage) {
+            dto.setMsg("查询成功");
+            return new ResponseEntity<>(policyRulePage, HttpStatus.OK);
+        } else {
+            String msg = "未找到变更依据数据";
+            dto.setMsg(msg);
+            return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
+        }
+    }
 }
 

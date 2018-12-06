@@ -20,5 +20,7 @@ public interface OrgHeaderBatchMapper extends HrBaseMapper<OrgHeaderBatch> {
 
 	List<Map<String, Object>> searchAllBaInfo(RowBounds rowBounds, Map params);
 	
+	List<Map<String, Object>> searchAllBaInfoByEmNum(RowBounds rowBounds, Map params);
+	
 	public List<Map<String, Object>> getAttachmentListByHeadId(Long id);
 }
