@@ -3,6 +3,7 @@ package cn.chinaunicom.orgmanage.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,7 +156,7 @@ public class OrgCreateController {
         Integer i = service.saveOrgHeaderDoc(entity);
         if(i>0) {
         	vo.setMsg("添加成功");
-        	vo.setId(entity.getDocHeaderId());
+        	vo.setId(entity.getDocHeaderId().toString());
         }else {
         	vo.setMsg("添加失败");
         }
@@ -197,7 +198,7 @@ public class OrgCreateController {
 	                 message = "查询成功"
 	         )
 	})
-	@PostMapping("/checkNameIsRepeat")
+	@GetMapping("/checkNameIsRepeat")
 	public ResponseEntity<Object> checkNameIsRepeat(String newOrgName,String docHeaderId,String tOrgId){
 		HashMap<String, Object> params = new HashMap<String, Object>();
         Integer i = createService.checkNameIsRepeat(params);
@@ -240,11 +241,53 @@ public class OrgCreateController {
 		}
         if(i>0) {
         	vo.setMsg("添加成功");
-        	vo.setId(entity.gettOrgId());
+        	vo.setId(entity.gettOrgId().toString());
         }else {
         	vo.setMsg("添加失败");
         }
         return new ResponseEntity<>(vo, HttpStatus.OK);
     }
+	
+	@ApiOperation(value = "判断组织是否删除", notes = "判断组织是否删除", response = MessageResponse.class, httpMethod = "POST")
+	@ApiImplicitParams({
+    @ApiImplicitParam(name = "x-token-code", value = "用户登录令牌", paramType = "header", dataType = "String", required = true, defaultValue = "xjMjL0m2A6d1mOIsb9uFk+wuBIcKxrg4")
+	})
+	@ApiResponses({
+	         @ApiResponse(
+	                 code = 200,
+	                 message = "查询成功"
+	         )
+	})
+	@GetMapping("/checkOrgIsDelete")
+	public ResponseEntity<Object> checkOrgIsDelete(String docHeaderId,String orgId){
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("docHeaderId", docHeaderId);
+		params.put("orgId", orgId);
+        List<Map<String, Object>> list = createService.checkOrgIsDelete(params);
+        MessageResponse vo = new MessageResponse();
+        if(list.size()>0) {
+        	StringBuffer sb = new StringBuffer();
+			int count = list.size();
+			if (count > 0) {
+				sb.append("以下组织：\\n");
+				for (int i = 0; i < list.size(); i++) {
+					sb.append("   组织\\： ");
+					sb.append(list.get(i).get("name"));
+					sb.append("  依据号\\： ");
+					sb.append(list.get(i).get("docCode"));
+					sb.append("\\n");
+					if (i > 1) {
+						break;
+					}
+				}
+				if (list.size() > 1) {
+					sb.append("   更多...\\n");
+				}
+				sb.append("正在撤销中，请重新选择！");
+			}
+			vo.setMsg(sb.toString());
+        }
+        return new ResponseEntity<>(vo, HttpStatus.OK);
+	}
 }
 

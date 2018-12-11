@@ -1,5 +1,6 @@
 package cn.chinaunicom.orgmanage.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import cn.chinaunicom.orgmanage.entity.OrgNewUnits;
@@ -16,5 +17,9 @@ import cn.chinaunicom.platform.dao.HrBaseMapper;
 public interface OrgNewUnitsMapper extends HrBaseMapper<OrgNewUnits> {
 
 	public Integer checkNameIsRepeat(Map<String, Object> params);
+	
+	public List<Map<String,Object>> checkOrgIsDelete(Map<String, Object> params);
+	
+	public List<Map<String,Object>> getNewAddJsonDataList(Map<String, Object> params);
 	
 }
