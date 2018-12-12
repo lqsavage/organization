@@ -69,4 +69,9 @@ public class OrgNewUnitsServiceImpl extends HrServiceImpl<OrgNewUnitsMapper, Org
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Map<String, Object>> checkOrgIsDelete(Map<String, Object> params) {
+		return mapper.checkOrgIsDelete(params);
+	}
 }

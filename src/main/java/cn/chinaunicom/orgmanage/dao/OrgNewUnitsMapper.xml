@@ -94,4 +94,163 @@
 		         and o.business_group_id = #{businessGroupId}
 		           )
 	</select>
+	
+	<select id="checkOrgIsDelete" resultType="java.util.Map">
+		select a.org_id as id,a.doc_code as docCode,e.name as name
+			  from (select d1.dis_org_id org_id,doc1.doc_code
+			          from ehrcuc_org_disabled d1, ehrcuc_org_header_doc doc1
+			         where d1.doc_header_id = doc1.doc_header_id
+			           and d1.dis_org_id = #{orgId}
+			           and doc1.doc_status != 'S'
+			           and doc1.doc_status != 'O'
+	               and doc1.doc_status != 'C'
+	            union
+	            select d2.dis_org_id org_id,doc2.doc_code
+	              from ehrcuc_org_disabled d2,
+	                  ehrcuc_org_header_doc doc2
+	             where d2.doc_header_id = doc2.doc_header_id
+	               and d2.doc_header_id = #{docHeaderId}
+	               and d2.dis_org_id = #{orgId}
+	            union
+	             select ORGANIZATION_ID org_id,'HR核心已撤销' as doc_code 
+	             from ogg.HR_ALL_ORGANIZATION_UNITS hro
+	              WHERE hro.ORGANIZATION_ID = #{orgId} 
+	              and hro.date_to is not null
+	             ) a ,ehrbase_organization_all e
+	  	where a.org_id = e.organization_id
+	</select>
+	
+	<select id="getNewAddJsonDataList" resultType="java.util.Map">
+		select b.lev as lev,
+		       b.ORGANIZATION_ID as orgId,
+		       b.NAME as orgName,
+		       b.ORGANIZATION_ID_PARENT as parentOrgId,
+		       b.parentOrgName as parentOrgName,
+		       b.OPTERATETYPE as businessType,
+		       b.operatorDate as businessDate,
+		       b.operatorId as businessId,
+		       DECODE(count(c.organization_id), 0, 'false', 'true') as isExistChild
+		  from (SELECT LEVEL LEV,
+		               B.ORGANIZATION_ID,
+		               B.NAME,
+		               B.ORGANIZATION_ID_PARENT,
+		               (SELECT C.orgName
+		                  FROM (select eoa1.ORGANIZATION_ID orgId, eoa1.name orgName
+		                          from ehrbase_organization_all eoa1
+		                         where NVL(eoa1.DATE_TO, SYSDATE) >= TRUNC(SYSDATE)
+		                        union
+		                        select eonu2.t_org_id as orgId,
+		                               eonu2.org_name as orgName
+		                          from EHRCUC_ORG_NEW_UNITS eonu2
+		                         where eonu2.doc_header_id = #docHeaderId#) C
+		                 WHERE C.orgId = B.ORGANIZATION_ID_PARENT) parentOrgName,
+		               (SELECT DECODE(E.NEW_TYPE_CODE,
+		                              'A',
+		                              '新增',
+		                              'H',
+		                              '合并新增',
+		                              'U',
+		                              '更名新增',
+		                              E.NEW_TYPE_CODE)
+		                  FROM EHRCUC_ORG_NEW_UNITS E
+		                 WHERE E.T_ORG_ID = B.ORGANIZATION_ID
+		                   AND E.DOC_HEADER_ID = #docHeaderId#) OPTERATETYPE,
+		               NVL((select to_char(E2.DATE_FROM, 'YYYY-MM-DD')
+		                     FROM EHRCUC_ORG_NEW_UNITS E2
+		                    WHERE E2.T_ORG_ID = B.ORGANIZATION_ID
+		                      AND E2.DOC_HEADER_ID = #docHeaderId#
+		                      AND E2.NEW_TYPE_CODE = 'A'),
+		                   '') as operatorDate,
+		               NVL((select N2.T_ORG_ID
+		                     FROM EHRCUC_ORG_NEW_UNITS N2
+		                    WHERE N2.T_ORG_ID = B.ORGANIZATION_ID
+		                      AND N2.DOC_HEADER_ID = #docHeaderId#
+		                      AND N2.NEW_TYPE_CODE = 'A'),
+		                   '') as operatorId
+		          FROM (SELECT DISTINCT A.ORGANIZATION_ID,
+		                                A.NAME,
+		                                A.ORGANIZATION_ID_PARENT
+		                  FROM EHR.EHRBASE_ORGANIZATION_ALL A
+		                 WHERE NVL(DATE_TO, SYSDATE) >= TRUNC(SYSDATE)
+		                 START WITH A.ORGANIZATION_ID IN
+		                            (select N.PARENT_ORG_ID
+		                               from EHRCUC_ORG_NEW_UNITS N
+		                              where N.doc_header_id = #docHeaderId#
+		                                and N.NEW_TYPE_CODE = 'A')
+		                CONNECT BY A.ORGANIZATION_ID = PRIOR A.ORGANIZATION_ID_PARENT
+		                union
+		                select eonu.t_org_id, eonu.org_name, eonu.parent_org_id
+		                  from EHRCUC_ORG_NEW_UNITS eonu
+		                 where eonu.doc_header_id = #docHeaderId#
+		                 and eonu.NEW_TYPE_CODE = 'A') B
+		        CONNECT BY PRIOR B.ORGANIZATION_ID = B.ORGANIZATION_ID_PARENT
+		         START WITH B.ORGANIZATION_ID = #topOrgId#) b
+		
+		  left join
+		
+		 (SELECT LEVEL LEV,
+		         B.ORGANIZATION_ID,
+		         B.NAME,
+		         B.ORGANIZATION_ID_PARENT,
+		         (SELECT C.orgName
+		            FROM (select eoa1.ORGANIZATION_ID orgId, eoa1.name orgName
+		                    from ehrbase_organization_all eoa1
+		                   where NVL(eoa1.DATE_TO, SYSDATE) >= TRUNC(SYSDATE)
+		                  union
+		                  select eonu2.t_org_id as orgId, eonu2.org_name as orgName
+		                    from EHRCUC_ORG_NEW_UNITS eonu2
+		                   where eonu2.doc_header_id = #docHeaderId#) C
+		           WHERE C.orgId = B.ORGANIZATION_ID_PARENT) parentOrgName,
+		         (SELECT DECODE(E.NEW_TYPE_CODE,
+		                        'A',
+		                        '新增',
+		                        'H',
+		                        '合并新增',
+		                        'U',
+		                        '更名新增',
+		                        E.NEW_TYPE_CODE)
+		            FROM EHRCUC_ORG_NEW_UNITS E
+		           WHERE E.T_ORG_ID = B.ORGANIZATION_ID
+		             AND E.DOC_HEADER_ID = #docHeaderId#) OPTERATETYPE,
+		         NVL((select to_char(E2.DATE_FROM, 'YYYY-MM-DD')
+		               FROM EHRCUC_ORG_NEW_UNITS E2
+		              WHERE E2.T_ORG_ID = B.ORGANIZATION_ID
+		                AND E2.DOC_HEADER_ID = #docHeaderId#
+		                AND E2.NEW_TYPE_CODE = 'A'),
+		             '') as operatorDate,
+		         NVL((select N2.T_ORG_ID
+		               FROM EHRCUC_ORG_NEW_UNITS N2
+		              WHERE N2.T_ORG_ID = B.ORGANIZATION_ID
+		                AND N2.DOC_HEADER_ID = #docHeaderId#
+		                AND N2.NEW_TYPE_CODE = 'A'),
+		             '') as operatorId
+		    FROM (SELECT DISTINCT A.ORGANIZATION_ID, A.NAME, A.ORGANIZATION_ID_PARENT
+		            FROM EHR.EHRBASE_ORGANIZATION_ALL A
+		           WHERE NVL(DATE_TO, SYSDATE) >= TRUNC(SYSDATE)
+		           START WITH A.ORGANIZATION_ID IN
+		                      (select N.PARENT_ORG_ID
+		                         from EHRCUC_ORG_NEW_UNITS N
+		                        where N.doc_header_id = #docHeaderId#
+		                          and N.NEW_TYPE_CODE = 'A')
+		          CONNECT BY A.ORGANIZATION_ID = PRIOR A.ORGANIZATION_ID_PARENT
+		          union
+		          select eonu.t_org_id, eonu.org_name, eonu.parent_org_id
+		            from EHRCUC_ORG_NEW_UNITS eonu
+		           where eonu.doc_header_id = #docHeaderId#
+		           and eonu.NEW_TYPE_CODE = 'A') B
+		  CONNECT BY PRIOR B.ORGANIZATION_ID = B.ORGANIZATION_ID_PARENT
+		   START WITH B.ORGANIZATION_ID = #topOrgId#) c
+		
+		    on b.ORGANIZATION_ID = c.organization_id_parent
+		
+		 group by b.lev,
+		          b.ORGANIZATION_ID,
+		          b.name,
+		          b.organization_id_parent,
+		          b.parentOrgName,
+		          b.OPTERATETYPE,
+		          b.operatorDate,
+		          b.operatorId
+		 order by b.LEV
+	</select>
 </mapper>

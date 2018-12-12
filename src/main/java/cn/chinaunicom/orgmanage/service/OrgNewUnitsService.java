@@ -26,4 +26,6 @@ public interface OrgNewUnitsService extends IHrService<OrgNewUnits> {
 	
 	public Integer checkNameIsRepeat(Map<String, Object> params);
 	
+	public List<Map<String,Object>> checkOrgIsDelete(Map<String, Object> params);
+	
 }
